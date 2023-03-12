@@ -2,6 +2,12 @@ package selfish;
 
 import java.util.*;
 
+import selfish.deck.Card;
+import selfish.deck.Deck;
+import selfish.deck.GameDeck;
+import selfish.deck.Oxygen;
+import selfish.deck.SpaceDeck;
+
 public class GameEngine
 {
     private Collection <Astronaut> activePlayers;
@@ -9,19 +15,23 @@ public class GameEngine
     private List <Astronaut> corpses;   
     private Astronaut currentPlayer;
     private Random random;
-    //private GameDeck gameDeck;
-    //private GameDeck gameDiscard;
-    //private SpaceDeck spaceDeck;
-    //private SpaceDeck spaceDiscard;
+    private GameDeck gameDeck;
+    private GameDeck gameDiscard;
+    private SpaceDeck spaceDeck;
+    private SpaceDeck spaceDiscard;
     private final static long serialVersionUID=5;
 
     private GameEngine(){}
     public GameEngine(long seed, String GameDeck, String SpaceDeck)
     {
+        activePlayers = new ArrayList<>();
     }
     public int addPlayer(String player)
     {
-        return 1;
+        GameEngine p = new GameEngine();
+        Astronaut ob = new Astronaut(player,p);
+        activePlayers.add(ob);
+        return activePlayers.size();
     }
     public int endTurn()
     {
@@ -33,7 +43,12 @@ public class GameEngine
     }
     public List <Astronaut> getAllplayers()
     {
-        return corpses;
+        List <Astronaut> All = new ArrayList<>();
+            for(int i = 0 ; i< activePlayers.size(); i++)
+            {
+                All.add(((List<Astronaut>) activePlayers).get(i));
+            }
+        return All;
     }
     public Astronaut getCurrentPlayer()
     {
@@ -43,10 +58,10 @@ public class GameEngine
     {
         return 5;
     }
-    //public GameDeck getGameDeck(){return gameDeck;}
-    //public GameDeck getGameDiscard(){return gameDiscard;}
-    //public SpaceDeck getSpaceDeck(){return SpaceDeck;}
-    //public SpaceDeck getSpaceDiscard(){return SpaceDiscard;}
+    public GameDeck getGameDeck(){return gameDeck;}
+    public GameDeck getGameDiscard(){return gameDiscard;}
+    public SpaceDeck getSpaceDeck(){return spaceDeck;}
+    public SpaceDeck getSpaceDiscard(){return spaceDiscard;}
     public Astronaut getWinner()
     {
         return currentPlayer;
@@ -59,12 +74,12 @@ public class GameEngine
     {
         return null;
     }
-    //public void mergeDecks(Deck deck1, Deck deck2){}
+    public void mergeDecks(Deck deck1, Deck deck2){}
     public void saveState(String path)
     {
 
     }
-    //public Oxygen[] splitOxygen(Oxygen dbl){return null;}
+    public Oxygen[] splitOxygen(Oxygen dbl){return null;}
     public void startGame()
     {
 
@@ -73,5 +88,5 @@ public class GameEngine
     {
 
     }
-    //public Card travel(Astronaut traveller){return null;}
+    public Card travel(Astronaut traveller){return null;}
 }
