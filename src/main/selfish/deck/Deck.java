@@ -1,6 +1,6 @@
 package selfish.deck;
 import java.util.*;
-
+import java.io.*;
 public class Deck
 {
     private Collection <Card> cards;
@@ -8,10 +8,30 @@ public class Deck
     protected Deck(){}
     protected static List <Card> loadCards(String path)
     {
-        return null;
+        List <Card> Cards = new ArrayList<>();
+        try
+        {
+            FileReader f = new FileReader(path);
+            BufferedReader br = new BufferedReader(f);
+            String line = br.readLine();
+            while(line!=null)
+            {
+                line = br.readLine();
+                if(line == null)
+                {
+                    br.close();
+                    break;
+                }
+                String card [] = line.split(";");
+                Card c = new Card(card[0],card[1]);
+                Cards.add(c);
+            }
+        }catch (Exception e){}
+        return Cards;
     }
     protected static Card[] stringToCards(String str)
     {
+        //Card p[] = new Card[5]; Array to be returned.
         return null;
     }
     public int add(Card card)

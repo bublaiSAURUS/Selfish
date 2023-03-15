@@ -1,14 +1,14 @@
 package selfish;
 
 import java.util.*;
-
+import java.io.*;
 import selfish.deck.Card;
 import selfish.deck.Deck;
 import selfish.deck.GameDeck;
 import selfish.deck.Oxygen;
 import selfish.deck.SpaceDeck;
 
-public class GameEngine
+public class GameEngine implements java.io.Serializable
 {
     private Collection <Astronaut> activePlayers;
     private boolean hasStarted;
@@ -24,7 +24,12 @@ public class GameEngine
     private GameEngine(){}
     public GameEngine(long seed, String GameDeck, String SpaceDeck)
     {
+        gameDeck = new GameDeck(GameDeck);
+        gameDiscard = new GameDeck(GameDeck);
+        spaceDeck = new SpaceDeck(SpaceDeck);
+        spaceDiscard = new SpaceDeck(SpaceDeck);
         activePlayers = new ArrayList<>();
+        random = new Random(seed);
     }
     public int addPlayer(String player)
     {
@@ -41,7 +46,7 @@ public class GameEngine
     {
         return true;
     }
-    public List <Astronaut> getAllplayers()
+    public List <Astronaut> getAllPlayers()
     {
         List <Astronaut> All = new ArrayList<>();
             for(int i = 0 ; i< activePlayers.size(); i++)
@@ -77,7 +82,34 @@ public class GameEngine
     public void mergeDecks(Deck deck1, Deck deck2){}
     public void saveState(String path)
     {
-
+        try {  
+            File file = new File(path);  
+            if (file.createNewFile()) 
+            {  
+              System.out.println("File created: " + file.getName());  
+              System.out.println("Absolute path: " + file.getAbsolutePath());  
+              FileOutputStream f = new FileOutputStream(file);
+                ObjectOutputStream out = new ObjectOutputStream(f);
+                out.writeObject(gameDeck);
+                out.writeObject(spaceDeck); 
+                out.writeObject(gameDiscard); 
+                out.writeObject(spaceDiscard); 
+                out.writeObject(random);
+                out.writeObject(activePlayers);    
+                out.close();
+                f.close();
+                System.out.println("Object has been serialized");
+            } 
+            else 
+            {  
+              System.out.println("File already exists.");  
+            }  
+          } catch (IOException e) 
+          {
+            System.out.println("An error occurred.");
+            e.printStackTrace();  
+          }
+        
     }
     public Oxygen[] splitOxygen(Oxygen dbl){return null;}
     public void startGame()

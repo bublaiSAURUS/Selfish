@@ -16,7 +16,7 @@ public class Oxygen extends Card
     }
     public String toString()
     {
-        return toString();
+        return (toString()+"("+value+")");
     }    
     
 }

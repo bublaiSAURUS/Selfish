@@ -20,6 +20,7 @@ public class GameDeck extends Deck
     public GameDeck(String path)
     {
         super();
+        
     }
     public Oxygen drawOxygen(int value)
     {
