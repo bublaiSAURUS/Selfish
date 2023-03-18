@@ -1,10 +1,11 @@
 package selfish;
+import java.io.*;
 //import selfish.deck;
 import java.util.*;
 
 import selfish.deck.Card;
 import selfish.deck.Oxygen;
-public class Astronaut 
+public class Astronaut implements Serializable
 {
     private GameEngine game;
     private List <Card> actions;

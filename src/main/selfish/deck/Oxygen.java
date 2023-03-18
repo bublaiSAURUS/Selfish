@@ -1,6 +1,8 @@
 package selfish.deck;
 
-public class Oxygen extends Card
+import java.io.Serializable;
+
+public class Oxygen extends Card implements Serializable
 {
     private int value;
     private final static long serialVersionUID = 0;

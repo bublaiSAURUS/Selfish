@@ -8,7 +8,7 @@ public class Deck
     protected Deck(){}
     protected static List <Card> loadCards(String path)
     {
-        List <Card> Cards = new ArrayList<>();
+        List <Card> Cards = new ArrayList<Card>();
         try
         {
             FileReader f = new FileReader(path);

@@ -1,6 +1,8 @@
 package selfish.deck;
 
-public class GameDeck extends Deck
+import java.io.Serializable;
+
+public class GameDeck extends Deck implements Serializable
 {
     public final static String HACK_SUIT = "Hack suit";
     public final static String HOLE_IN_SUIT = "Hole in suit";

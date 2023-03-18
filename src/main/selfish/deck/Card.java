@@ -1,6 +1,7 @@
 package selfish.deck;
-
-public class Card
+import java.io.*;
+import java.util.*;
+public class Card implements Serializable
 {
     private String name;
     private String description;

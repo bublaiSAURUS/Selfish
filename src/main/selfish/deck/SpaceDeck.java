@@ -1,6 +1,8 @@
 package selfish.deck;
 
-public class SpaceDeck extends Deck
+import java.io.Serializable;
+
+public class SpaceDeck extends Deck implements Serializable
 {
     public final static String ASTEROID_FIELD = "Asteroid field";
     public final static String BLANK_SPACE = "Blank space";

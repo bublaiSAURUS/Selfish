@@ -3,8 +3,7 @@ import selfish.deck.GameDeck;
 import selfish.deck.SpaceDeck;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import selfish.Astronaut;
 public class GameDriver {

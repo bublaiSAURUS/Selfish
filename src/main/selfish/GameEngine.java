@@ -28,7 +28,7 @@ public class GameEngine implements java.io.Serializable
         gameDiscard = new GameDeck(GameDeck);
         spaceDeck = new SpaceDeck(SpaceDeck);
         spaceDiscard = new SpaceDeck(SpaceDeck);
-        activePlayers = new ArrayList<>();
+        activePlayers = new ArrayList<Astronaut>();
         random = new Random(seed);
     }
     public int addPlayer(String player)
@@ -48,7 +48,7 @@ public class GameEngine implements java.io.Serializable
     }
     public List <Astronaut> getAllPlayers()
     {
-        List <Astronaut> All = new ArrayList<>();
+        List <Astronaut> All = new ArrayList<Astronaut>();
             for(int i = 0 ; i< activePlayers.size(); i++)
             {
                 All.add(((List<Astronaut>) activePlayers).get(i));
