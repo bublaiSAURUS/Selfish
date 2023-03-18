@@ -2,7 +2,7 @@ package selfish.deck;
 
 import java.io.Serializable;
 
-public class Oxygen extends Card implements Serializable
+public class Oxygen extends Card implements Serializable, Comparable
 {
     private int value;
     private final static long serialVersionUID = 0;
@@ -19,6 +19,11 @@ public class Oxygen extends Card implements Serializable
     public String toString()
     {
         return (toString()+"("+value+")");
+    }
+    @Override
+    public int compareTo(Object o) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }    
     
 }

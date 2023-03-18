@@ -1,7 +1,7 @@
 package selfish.deck;
 import java.util.*;
 import java.io.*;
-public class Deck
+public class Deck implements Serializable
 {
     private Collection <Card> cards;
     private final static long serialVersionUID = 5;

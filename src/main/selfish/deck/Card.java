@@ -1,7 +1,7 @@
 package selfish.deck;
 import java.io.*;
 import java.util.*;
-public class Card implements Serializable
+public abstract class Card implements Serializable, Comparable
 {
     private String name;
     private String description;
