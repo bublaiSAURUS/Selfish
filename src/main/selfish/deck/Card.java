@@ -21,4 +21,9 @@ public class Card implements Serializable, Comparable
     {
         return name;
     }
+    @Override
+    public int compareTo(Object o) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    }
 }

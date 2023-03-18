@@ -1,14 +1,14 @@
 package selfish.deck;
 import java.util.*;
 import java.io.*;
-public class Deck implements Serializable
+public class Deck
 {
     private Collection <Card> cards;
     private final static long serialVersionUID = 5;
     protected Deck(){}
     protected static List <Card> loadCards(String path)
     {
-        List <Card> Cards = new ArrayList<Card>();
+        List <Card> Cards = new ArrayList<>();
         try
         {
             FileReader f = new FileReader(path);
