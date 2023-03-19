@@ -40,7 +40,12 @@ public class GameEngine implements java.io.Serializable
     }
     public int endTurn()
     {
-        return 1;
+        if(currentPlayer.isAlive())
+       {
+        
+        activePlayers.add(currentPlayer);
+       }
+        return activePlayers.size();
     }
     public boolean gameOver()
     {
@@ -57,6 +62,7 @@ public class GameEngine implements java.io.Serializable
     }
     public Astronaut getCurrentPlayer()
     {
+        currentPlayer = ((List<Astronaut>)activePlayers).get(0);
         return currentPlayer;
     }
     public int getFullPlayerCount()
@@ -118,7 +124,10 @@ public class GameEngine implements java.io.Serializable
     }
     public void startTurn()
     {
-
+        System.out.println(getCurrentPlayer().toString()+":");
+        //System.out.println(((List<Astronaut>) activePlayers).get(3));
+        activePlayers.remove(getCurrentPlayer());
+        
     }
     public Card travel(Astronaut traveller){return null;}
 }

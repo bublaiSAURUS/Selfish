@@ -77,6 +77,8 @@ public class GameDriver {
         GameDeck g = new GameDeck(f1.getAbsolutePath());
         SpaceDeck s = new SpaceDeck(f2.getAbsolutePath());
         ob.saveState("C:/Users/sourabh roy/OneDrive/Desktop/COMP16412/comp16412-coursework-2__r67083sr/src/main/selfish/SaveGame.ser");
-
+        do{
+            ob.startTurn();
+        }while(ob.endTurn()!=0);
     }   
 }
