@@ -11,7 +11,7 @@ public class Card implements Serializable, Comparable
     public Card(String name, String description)
     {
         this.name = name;
-        this.description = description;
+        this.description = description.trim();
     }
     public String getDescription()
     {
