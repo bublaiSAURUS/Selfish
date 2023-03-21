@@ -33,7 +33,8 @@ public abstract class Deck implements Serializable
     {
         //Card p[] = new Card[5]; Array to be returned.
         String ref [] = str.split(";");
-        Card p[] = new Card[Integer.parseInt(ref[2])];
+        String l = ref[2].trim();
+        Card p[] = new Card[Integer.parseInt(l)];
         for(int i = 0 ; i<p.length; i++)
         {
             Card c = new Card(ref[0],ref[1]);
