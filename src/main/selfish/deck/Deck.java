@@ -32,7 +32,14 @@ public abstract class Deck implements Serializable
     protected static Card[] stringToCards(String str)
     {
         //Card p[] = new Card[5]; Array to be returned.
-        return null;
+        String ref [] = str.split(";");
+        Card p[] = new Card[Integer.parseInt(ref[2])];
+        for(int i = 0 ; i<p.length; i++)
+        {
+            Card c = new Card(ref[0],ref[1]);
+            p[i] = c;
+        }
+        return p;
     }
     public int add(Card card)
     {
