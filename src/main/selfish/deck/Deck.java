@@ -22,9 +22,11 @@ public abstract class Deck implements Serializable
                     br.close();
                     break;
                 }
-                String card [] = line.split(";");
-                Card c = new Card(card[0],card[1]);
-                Cards.add(c);
+                Card elements[] = stringToCards(line);
+                for(int i = 0; i<elements.length;i++)
+                {
+                    Cards.add(elements[i]);
+                }
             }
         }catch (Exception e){}
         return Cards;
