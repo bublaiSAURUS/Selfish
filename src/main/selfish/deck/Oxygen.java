@@ -25,5 +25,8 @@ public class Oxygen extends Card implements Serializable, Comparable
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }    
-    
+    public int compareTo(Oxygen o)
+    {
+        return value-o.getValue();
+    }
 }
