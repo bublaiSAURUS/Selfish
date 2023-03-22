@@ -26,4 +26,10 @@ public class Card implements Serializable, Comparable
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
+    public int compareTo(Card c)
+    {
+        String c1 = name;
+        String c2 = c.toString();
+        return c1.compareTo(c2);
+    }
 }
