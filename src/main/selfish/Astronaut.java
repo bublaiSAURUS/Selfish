@@ -37,7 +37,7 @@ public class Astronaut implements Serializable
     }
     public void addToTrack(Card card)//
     {
-
+        track.add(card);
     }
     public int breathe()
     {
