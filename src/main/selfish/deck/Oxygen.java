@@ -10,7 +10,7 @@ public class Oxygen extends Card implements Serializable, Comparable
     public Oxygen(int value)
     {
         super();
-        value = this.value; 
+        this.value = value; 
     }
     public int getValue()
     {
