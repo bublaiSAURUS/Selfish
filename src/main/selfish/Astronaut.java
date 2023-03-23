@@ -64,7 +64,7 @@ public class Astronaut implements Serializable
     }
     public int distanceFromShip()
     {
-        return 6;
+        return 6-track.size();
     }
     public List <Card> getActions(){return null;}
     public String getActionsStr(boolean enumerated, boolean excludeShields)
