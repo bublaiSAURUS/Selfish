@@ -41,7 +41,26 @@ public class Astronaut implements Serializable
     }
     public int breathe()
     {
-        return -1;
+        int count = 0;
+        for(int i = 0; i<oxygens.size();i++)
+        {
+            Oxygen ob = oxygens.get(i);
+            int v = ob.getValue();
+            if(v==1)
+            {
+                oxygens.remove(ob);
+                return oxygenRemaining();
+            }
+            else
+            count++;
+        }
+        if(count==oxygens.size())
+        {
+            Oxygen ob = oxygens.get(0);
+            oxygens.remove(ob);
+            oxygens.add(new Oxygen(1));
+        }
+        return oxygenRemaining();
     }
     public int distanceFromShip()
     {
@@ -79,7 +98,13 @@ public class Astronaut implements Serializable
     public Card laserBlast(){return null;}
     public int oxygenRemaining()
     {
-        return 0;
+        int val = 0;
+        for(int i = 0; i<oxygens.size(); i++)
+        {
+            Oxygen o = oxygens.get(i);
+            val = val+ o.getValue();
+        }
+        return val;
     }
     public Card peekAtTrack(){return null;}
     public Oxygen siphon(){return null;}
