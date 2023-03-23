@@ -25,15 +25,13 @@ public class Astronaut implements Serializable
     public void addToHand(Card card)//
     {
         String n = card.toString();
-        if(n.equals("Oxygen(1)")==false && n.equals("Oxygen(2)")==false)
+        if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
         {
-            actions.add(card);
+            oxygens.add((Oxygen)card);
         }
         else
         {
-            char val = n.charAt(n.length()-2);
-            Oxygen o = new Oxygen((int)val);
-            oxygens.add(o);
+            actions.add(card);
         }
 
     }
