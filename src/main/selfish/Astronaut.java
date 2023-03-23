@@ -31,8 +31,8 @@ public class Astronaut implements Serializable
         }
         else
         {
-            String val = n.substring(n.length()-3);
-            Oxygen o = new Oxygen(Integer.parseInt(val));
+            char val = n.charAt(n.length()-2);
+            Oxygen o = new Oxygen((int)val);
             oxygens.add(o);
         }
 
