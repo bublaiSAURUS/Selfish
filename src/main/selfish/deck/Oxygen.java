@@ -18,7 +18,7 @@ public class Oxygen extends Card implements Serializable, Comparable
     }
     public String toString()
     {
-        return (toString()+"("+value+")");
+        return ("Oxygen"+"("+value+")");
     }
     @Override
     public int compareTo(Object o) {

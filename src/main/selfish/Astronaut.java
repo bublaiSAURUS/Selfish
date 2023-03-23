@@ -18,9 +18,23 @@ public class Astronaut implements Serializable
     {
         this.name = name;
         this.game = game;
+        actions = new ArrayList<Card>();
+        oxygens = new ArrayList<Oxygen>();
+        track = new ArrayList<Card>();
     }
     public void addToHand(Card card)//
     {
+        String n = card.toString();
+        if(n.equals("Oxygen(1)")==false && n.equals("Oxygen(2)")==false)
+        {
+            actions.add(card);
+        }
+        else
+        {
+            String val = n.substring(n.length()-3);
+            Oxygen o = new Oxygen(Integer.parseInt(val));
+            oxygens.add(o);
+        }
 
     }
     public void addToTrack(Card card)//
@@ -45,7 +59,7 @@ public class Astronaut implements Serializable
     {
         return "";
     } 
-    public Collection <Card> getTrack(){return null;}
+    public Collection <Card> getTrack(){return track;}
     public void hack(Card card){}
     public Card hack(String card){return null;}
     public int hasCard(String Card)
