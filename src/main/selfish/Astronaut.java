@@ -127,7 +127,34 @@ public class Astronaut implements Serializable
     }
     public String getHandStr()
     {
-        return "";
+        List <Oxygen> o = oxygens;
+        Collections.sort(o, Collections.reverseOrder());
+        String action = getActionsStr(false, false);
+        String oxygen = ""; int count_o2 = 0; int count_o1 = 0;
+        for(int i = 0; i < o.size(); i++)
+        {
+            if(o.get(i).toString().equals("Oxygen(2)"))
+            {
+                count_o2++;
+            }
+        }
+        if(count_o2>1)
+        oxygen = oxygen+count_o2+"x "+"Oxygen(2), ";
+        else if(count_o2==1)
+        oxygen = oxygen+"Oxygen(2), ";
+        for(int i = 0; i < o.size(); i++)
+        {
+            if(o.get(i).toString().equals("Oxygen(1)"))
+            {
+                count_o1++;
+            }
+        }
+        if(count_o1>1)
+        oxygen = oxygen+count_o1+"x "+"Oxygen(1), ";
+        else if(count_o2==1)
+        oxygen = oxygen+"Oxygen(1), ";
+        String hand = oxygen.substring(0,oxygen.length()-2);
+        return hand+"; "+action;
     } 
     public Collection <Card> getTrack(){return track;}
     public void hack(Card card){}
