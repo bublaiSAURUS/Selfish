@@ -105,6 +105,8 @@ public class Astronaut implements Serializable
                     index++;
             }
         }
+        if(cardlist.equals(""))
+        return cardlist;
         return cardlist.substring(0,cardlist.length()-2);
     } 
     public List <Card> getHand(){return null;}
