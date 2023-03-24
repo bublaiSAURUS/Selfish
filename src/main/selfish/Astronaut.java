@@ -151,7 +151,7 @@ public class Astronaut implements Serializable
         }
         if(count_o1>1)
         oxygen = oxygen+count_o1+"x "+"Oxygen(1), ";
-        else if(count_o2==1)
+        else if(count_o1==1)
         oxygen = oxygen+"Oxygen(1), ";
         String hand = oxygen.substring(0,oxygen.length()-2);
         return hand+"; "+action;
