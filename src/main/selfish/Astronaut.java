@@ -109,7 +109,22 @@ public class Astronaut implements Serializable
         return cardlist;
         return cardlist.substring(0,cardlist.length()-2);
     } 
-    public List <Card> getHand(){return null;}
+    public List <Card> getHand()
+    {
+        List<Card> hand = new ArrayList<>();
+        for(int i = 0; i < oxygens.size(); i++)
+        {
+            Oxygen ob = oxygens.get(i);
+            hand.add(ob);
+        }
+        for(int i = 0; i < actions.size(); i++)
+        {
+            Card o = actions.get(i);
+            hand.add(o);
+        }
+        hand.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
+        return hand;
+    }
     public String getHandStr()
     {
         return "";
