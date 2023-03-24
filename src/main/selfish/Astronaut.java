@@ -157,8 +157,38 @@ public class Astronaut implements Serializable
         return hand+"; "+action;
     } 
     public Collection <Card> getTrack(){return track;}
-    public void hack(Card card){}
-    public Card hack(String card){return null;}
+    public void hack(Card card)
+    {
+        String n = card.toString();
+        if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
+                {
+                    oxygens.remove(card);
+                    if(oxygens.size()==0)
+                        actions = null;
+                }
+        else
+            actions.remove(card);
+    }
+    public Card hack(String card)
+    {
+        List<Card> h = getHand();
+        for(int i = 0; i<h.size(); i++)
+        {
+            String n = h.get(i).toString();
+            if(card.equals(n))
+            {
+                if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
+                {
+                    oxygens.remove(h.get(i));
+                    if(oxygens.size()==0)
+                    actions = null;
+                }
+                else
+                actions.remove(h.get(i));
+            }
+        }
+        return null;
+    }
     public int hasCard(String Card)
     {
         return 1;
@@ -173,7 +203,10 @@ public class Astronaut implements Serializable
     }
     public boolean isAlive()
     {
+        int l = oxygens.size();
+        if(l>0)
         return true;
+        return false;
     }
     public Card laserBlast(){return null;}
     public int oxygenRemaining()
@@ -195,6 +228,8 @@ public class Astronaut implements Serializable
     } 
     public String toString()
     {
+        if(isAlive()==false)
+        return name+" (is dead)";
         return name;
     }
 }
