@@ -128,10 +128,10 @@ public class Astronaut implements Serializable
     public String getHandStr()
     {
         List <Oxygen> o = oxygens;
-        Collections.sort(o, Collections.reverseOrder());
+        o.sort(((o1, o2) -> o1.compareTo(o2)));
         String action = getActionsStr(false, false);
         String oxygen = ""; int count_o2 = 0; int count_o1 = 0;
-        for(int i = 0; i < o.size(); i++)
+        for(int i = o.size()-1; i >=0; i--)
         {
             if(o.get(i).toString().equals("Oxygen(2)"))
             {
