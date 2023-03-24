@@ -75,10 +75,12 @@ public class Astronaut implements Serializable
     {
         //actions.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
         List<Card> act = getActions();
-        String cardlist = ""; int p = 0;
+        String cardlist = ""; int p = 0; int index = 65;
         while(p!=act.size())
         {
             String s = act.get(p).toString(); int count = 0;
+            if(excludeShields == true && s == "Shield")
+            continue;
             for(int j = 0; j<act.size();j++)
             {
                 String k = act.get(j).toString();
@@ -87,20 +89,34 @@ public class Astronaut implements Serializable
                     count++;
                 }
             }
-            p = p+count;
-            if(count>1 && p!=act.size())
+            p = p+count; index++;
+            if(enumerated==false)
             {
-                cardlist = cardlist + count +"x"+" "+s+", ";
+                if(count>1 && p!=act.size())
+                {
+                    cardlist = cardlist + count +"x"+" "+s+", ";
+                }
+                else if(count==1 && p!=act.size())
+                cardlist = cardlist+s+", ";
+                else if(count>1 && p==act.size())
+                {
+                    cardlist = cardlist + count+"x"+" "+s;
+                }
+                else if(count==1 && p==act.size())
+                {
+                    cardlist = cardlist + s;
+                }
             }
-            else if(count==1 && p!=act.size())
-            cardlist = cardlist+s+", ";
-            else if(count>1 && p==act.size())
+            else
             {
-                cardlist = cardlist + count+"x"+" "+s;
-            }
-            else if(count==1 && p==act.size())
-            {
-                cardlist = cardlist + s;
+                if(p!=act.size())
+                {
+                    cardlist = cardlist +"["+(char)index+"]"+" "+s+", ";
+                }
+                else
+                {
+                    cardlist = cardlist + "["+(char)index+"]"+" "+s;
+                }
             }
         }
         return cardlist;
