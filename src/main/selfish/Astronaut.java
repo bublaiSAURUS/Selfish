@@ -92,36 +92,20 @@ public class Astronaut implements Serializable
             continue;
             if(enumerated==false)
             {
-                if(count>1 && p!=act.size())
+                if(count>1)
                 {
                     cardlist = cardlist + count +"x"+" "+s+", ";
                 }
-                else if(count==1 && p!=act.size())
+                else if(count==1)
                 cardlist = cardlist+s+", ";
-                else if(count>1 && p==act.size())
-                {
-                    cardlist = cardlist + count+"x"+" "+s;
-                }
-                else if(count==1 && p==act.size())
-                {
-                    cardlist = cardlist + s;
-                }
             }
             else
-            {
-                if(p!=act.size())
-                {
+            {            
                     cardlist = cardlist +"["+(char)index+"]"+" "+s+", ";
                     index++;
-                }
-                else
-                {
-                    cardlist = cardlist + "["+(char)index+"]"+" "+s;
-                    index++;
-                }
             }
         }
-        return cardlist;
+        return cardlist.substring(0,cardlist.length()-2);
     } 
     public List <Card> getHand(){return null;}
     public String getHandStr()
