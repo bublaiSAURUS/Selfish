@@ -160,33 +160,61 @@ public class Astronaut implements Serializable
     public void hack(Card card)
     {
         String n = card.toString();
-        if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
+        if(n.equals("Oxygen(1)"))
+            {
+                for(int i = 0; i <oxygens.size();i++)
                 {
-                    oxygens.remove((Oxygen)card);
+                    Oxygen o = oxygens.get(i);
+                    if(o.toString().equals(n))
+                    oxygens.remove(o);
                 }
+            }
+        else if(n.equals("Oxygen(2)"))
+            {
+                for(int i = 0; i <oxygens.size();i++)
+                {
+                    Oxygen o = oxygens.get(i);
+                    if(o.toString().equals(n))
+                    oxygens.remove(o);
+                }
+            }
         else
             actions.remove(card);
-        if(oxygens.size()==0)
-        actions = null;
+        if(isAlive()==false)
+            actions = null;
     }
     public Card hack(String card)
     {
-        List<Card> h = getHand();
-        for(int i = 0; i<h.size(); i++)
-        {
-            String n = h.get(i).toString();
-            if(card.equals(n))
+        if(card.equals("Oxygen(1)"))
             {
-                if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
+                for(int i = 0; i <oxygens.size();i++)
                 {
-                    oxygens.remove((Oxygen)h.get(i));
+                    Oxygen o = oxygens.get(i);
+                    if(o.toString().equals(card))
+                    {oxygens.remove(o);break;}
                 }
-                else
-                {actions.remove(h.get(i));}
-                break;
             }
-        }
-        if(oxygens.size()==0)
+        else if(card.equals("Oxygen(2)"))
+            {
+                for(int i = 0; i <oxygens.size();i++)
+                {
+                    Oxygen o = oxygens.get(i);
+                    if(o.toString().equals(card))
+                    {oxygens.remove(o); break;}
+                }
+            }
+        else
+            {
+                for(int i = 0; i< actions.size(); i++)
+                {
+                    if(actions.get(i).toString().equals(card))
+                    {
+                        actions.remove(actions.get(i));
+                        break;
+                    }
+                }
+            }
+        if(isAlive()==false)
             actions = null;
         return null;
     }
