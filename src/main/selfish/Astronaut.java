@@ -66,10 +66,42 @@ public class Astronaut implements Serializable
     {
         return 6-track.size();
     }
-    public List <Card> getActions(){return null;}
+    public List <Card> getActions()
+    {
+        return actions;
+    }
     public String getActionsStr(boolean enumerated, boolean excludeShields)
     {
-        return "";
+        actions.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
+        String cardlist = ""; int p = 0;
+        for(int i = 0; i<actions.size(); i++)
+        {
+            String s = actions.get(i).toString(); int count = 0;
+            for(int j = p; j<actions.size();j++)
+            {
+                String k = actions.get(j).toString();
+                if(s.equals(k))
+                {
+                    count++;
+                }
+            }
+            p = p+count;
+            if(count>0 && p!=actions.size())
+            {
+                cardlist = cardlist + count +"x"+" "+s+", ";
+            }
+            else if(count==0 && p!=actions.size())
+            cardlist = cardlist+s+", ";
+            else if(count>0 && p==actions.size())
+            {
+                cardlist = cardlist + count+"x"+" "+s;
+            }
+            else if(count==0 && p!=actions.size())
+            {
+                cardlist = cardlist + s;
+            }
+        }
+        return cardlist;
     } 
     public List <Card> getHand(){return null;}
     public String getHandStr()
