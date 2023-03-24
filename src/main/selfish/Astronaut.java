@@ -68,35 +68,37 @@ public class Astronaut implements Serializable
     }
     public List <Card> getActions()
     {
+        actions.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
         return actions;
     }
     public String getActionsStr(boolean enumerated, boolean excludeShields)
     {
-        actions.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
+        //actions.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
+        List<Card> act = getActions();
         String cardlist = ""; int p = 0;
-        while(p!=actions.size())
+        while(p!=act.size())
         {
-            String s = actions.get(p).toString(); int count = 0;
-            for(int j = p; j<actions.size();j++)
+            String s = act.get(p).toString(); int count = 0;
+            for(int j = p; j<act.size();j++)
             {
-                String k = actions.get(j).toString();
+                String k = act.get(j).toString();
                 if(s.equals(k))
                 {
                     count++;
                 }
             }
             p = p+count;
-            if(count>0 && p!=actions.size())
+            if(count>1 && p!=act.size())
             {
                 cardlist = cardlist + count +"x"+" "+s+", ";
             }
-            else if(count==0 && p!=actions.size())
+            else if(count==1 && p!=act.size())
             cardlist = cardlist+s+", ";
-            else if(count>0 && p==actions.size())
+            else if(count>1 && p==act.size())
             {
                 cardlist = cardlist + count+"x"+" "+s;
             }
-            else if(count==0 && p!=actions.size())
+            else if(count==1 && p!=act.size())
             {
                 cardlist = cardlist + s;
             }
