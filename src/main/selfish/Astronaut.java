@@ -74,10 +74,10 @@ public class Astronaut implements Serializable
     {
         actions.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
         String cardlist = ""; int p = 0;
-        for(int i = p; i<actions.size();)
+        for(int i = 0; i<actions.size();i++)
         {
-            String s = actions.get(i).toString(); int count = 0;
-            for(int j = i; j<actions.size();j++)
+            String s = actions.get(p).toString(); int count = 0;
+            for(int j = p; j<actions.size();j++)
             {
                 String k = actions.get(j).toString();
                 if(s.equals(k))
