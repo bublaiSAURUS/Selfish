@@ -90,7 +90,6 @@ public class Astronaut implements Serializable
             p = p+count; 
             if(excludeShields == true && s == "Shield")
             continue;
-            index++;
             if(enumerated==false)
             {
                 if(count>1 && p!=act.size())
@@ -113,10 +112,12 @@ public class Astronaut implements Serializable
                 if(p!=act.size())
                 {
                     cardlist = cardlist +"["+(char)index+"]"+" "+s+", ";
+                    index++;
                 }
                 else
                 {
                     cardlist = cardlist + "["+(char)index+"]"+" "+s;
+                    index++;
                 }
             }
         }
