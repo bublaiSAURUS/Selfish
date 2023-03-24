@@ -79,8 +79,6 @@ public class Astronaut implements Serializable
         while(p!=act.size())
         {
             String s = act.get(p).toString(); int count = 0;
-            if(excludeShields == true && s == "Shield")
-            continue;
             for(int j = 0; j<act.size();j++)
             {
                 String k = act.get(j).toString();
@@ -89,7 +87,10 @@ public class Astronaut implements Serializable
                     count++;
                 }
             }
-            p = p+count; index++;
+            p = p+count; 
+            if(excludeShields == true && s == "Shield")
+            continue;
+            index++;
             if(enumerated==false)
             {
                 if(count>1 && p!=act.size())
