@@ -162,12 +162,12 @@ public class Astronaut implements Serializable
         String n = card.toString();
         if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
                 {
-                    oxygens.remove(card);
-                    if(oxygens.size()==0)
-                        actions = null;
+                    oxygens.remove((Oxygen)card);
                 }
         else
             actions.remove(card);
+        if(oxygens.size()==0)
+        actions = null;
     }
     public Card hack(String card)
     {
@@ -179,14 +179,15 @@ public class Astronaut implements Serializable
             {
                 if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
                 {
-                    oxygens.remove(h.get(i));
-                    if(oxygens.size()==0)
-                    actions = null;
+                    oxygens.remove((Oxygen)h.get(i));
                 }
                 else
-                actions.remove(h.get(i));
+                {actions.remove(h.get(i));}
+                break;
             }
         }
+        if(oxygens.size()==0)
+            actions = null;
         return null;
     }
     public int hasCard(String Card)
