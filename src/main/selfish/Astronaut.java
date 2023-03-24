@@ -79,7 +79,7 @@ public class Astronaut implements Serializable
         while(p!=act.size())
         {
             String s = act.get(p).toString(); int count = 0;
-            for(int j = p; j<act.size();j++)
+            for(int j = 0; j<act.size();j++)
             {
                 String k = act.get(j).toString();
                 if(s.equals(k))
