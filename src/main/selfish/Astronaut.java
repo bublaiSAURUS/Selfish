@@ -98,7 +98,7 @@ public class Astronaut implements Serializable
             {
                 cardlist = cardlist + count+"x"+" "+s;
             }
-            else if(count==1 && p!=act.size())
+            else if(count==1 && p==act.size())
             {
                 cardlist = cardlist + s;
             }
