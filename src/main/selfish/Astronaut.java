@@ -297,8 +297,9 @@ public class Astronaut implements Serializable
     {
         List<Card> h = getHand();
         int max = h.size();
+        Random random = new Random();
         //int randomNum = ThreadLocalRandom.current().nextInt(0, max + 1);
-        int rand = 0 + (int)Math.random()*(max - 0);
+        int rand = random.nextInt(max);
         if(oxygens.contains(h.get(rand)))
         {
             oxygens.remove(h.get(rand));
