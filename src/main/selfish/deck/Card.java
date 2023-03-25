@@ -1,7 +1,7 @@
 package selfish.deck;
 import java.io.*;
 import java.util.*;
-public class Card implements Serializable, Comparable
+public class Card implements Serializable, Comparable<Card>
 {
     private String name;
     private String description;
@@ -21,11 +21,12 @@ public class Card implements Serializable, Comparable
     {
         return name;
     }
-    @Override
-    public int compareTo(Object o) {
+    //@Override
+    //public int compareTo(Object o) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
-    }
+       // throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    //}
+    @Override
     public int compareTo(Card c)
     {
         String c1 = name;
