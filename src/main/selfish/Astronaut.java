@@ -2,6 +2,7 @@ package selfish;
 import java.io.*;
 //import selfish.deck;
 import java.util.*;
+//import java.util.concurrent.ThreadLocalRandom;
 
 import selfish.deck.Card;
 import selfish.deck.Oxygen;
@@ -162,12 +163,7 @@ public class Astronaut implements Serializable
         String n = card.toString();
         if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
             {
-                for(int i = 0; i <oxygens.size();i++)
-                {
-                    Oxygen o = oxygens.get(i);
-                    if(o.toString().equals(n))
-                    oxygens.remove(o);
-                }
+                oxygens.remove(card);
             }
         else
             actions.remove(card);
@@ -297,7 +293,22 @@ public class Astronaut implements Serializable
         this.actions = null;
         return ox;
     }
-    public Card steal(){return null;}
+    public Card steal()
+    {
+        List<Card> h = getHand();
+        int max = h.size();
+        //int randomNum = ThreadLocalRandom.current().nextInt(0, max + 1);
+        int rand = 0 + (int)Math.random()*(max - 0);
+        if(oxygens.contains(h.get(rand)))
+        {
+            oxygens.remove(h.get(rand));
+        }
+        else
+        {
+            actions.remove(h.get(rand));
+        }
+        return h.get(rand);
+    }
     public void swapTrack(Astronaut swapee)
     {
         Collection<Card> copy = swapee.getTrack();
