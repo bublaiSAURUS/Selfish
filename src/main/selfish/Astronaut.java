@@ -287,8 +287,9 @@ public class Astronaut implements Serializable
         {
             Oxygen o = oxygens.get(0);
             oxygens.remove(o);
-            oxygens.add(new Oxygen(1));
-            return o;
+            Oxygen o1 = new Oxygen(1);
+            oxygens.add(o1);
+            return o1;
         }
         Oxygen ox = oxygens.get(index);
         return ox;
