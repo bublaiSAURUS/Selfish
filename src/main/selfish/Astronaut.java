@@ -270,6 +270,9 @@ public class Astronaut implements Serializable
     public Card steal(){return null;}
     public void swapTrack(Astronaut swapee)
     {
+        Collection<Card> copy = swapee.getTrack();
+        swapee.track = this.track;
+        this.track = copy;
     } 
     public String toString()
     {
