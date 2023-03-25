@@ -249,7 +249,12 @@ public class Astronaut implements Serializable
         return true;
         return false;
     }
-    public Card laserBlast(){return null;}
+    public Card laserBlast()
+    {
+        Card c = ((List<Card>) track).get(track.size()-1);
+        track.remove(c);
+        return c;
+    }
     public int oxygenRemaining()
     {
         int val = 0;
@@ -266,7 +271,28 @@ public class Astronaut implements Serializable
         return ((List<Card>) track).get(track.size()-1);
         return null;
     }
-    public Oxygen siphon(){return null;}
+    public Oxygen siphon()
+    {
+        int count = 0; int index = 0;
+        for(int i = 0; i<oxygens.size(); i++)
+        {
+            if(oxygens.get(i).getValue()==1)
+            {
+                index = i; break;
+            }
+            else
+            count++;
+        }
+        if(count == oxygens.size())
+        {
+            Oxygen o = oxygens.get(0);
+            oxygens.remove(o);
+            oxygens.add(new Oxygen(1));
+            return o;
+        }
+        Oxygen ox = oxygens.get(index);
+        return ox;
+    }
     public Card steal(){return null;}
     public void swapTrack(Astronaut swapee)
     {
