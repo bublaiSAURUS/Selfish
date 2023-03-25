@@ -160,16 +160,7 @@ public class Astronaut implements Serializable
     public void hack(Card card)
     {
         String n = card.toString();
-        if(n.equals("Oxygen(1)"))
-            {
-                for(int i = 0; i <oxygens.size();i++)
-                {
-                    Oxygen o = oxygens.get(i);
-                    if(o.toString().equals(n))
-                    oxygens.remove(o);
-                }
-            }
-        else if(n.equals("Oxygen(2)"))
+        if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
             {
                 for(int i = 0; i <oxygens.size();i++)
                 {
@@ -185,22 +176,13 @@ public class Astronaut implements Serializable
     }
     public Card hack(String card)
     {
-        if(card.equals("Oxygen(1)"))
+        if(card.equals("Oxygen(1)") || card.equals("Oxygen(2)"))
             {
                 for(int i = 0; i <oxygens.size();i++)
                 {
                     Oxygen o = oxygens.get(i);
                     if(o.toString().equals(card))
                     {oxygens.remove(o);break;}
-                }
-            }
-        else if(card.equals("Oxygen(2)"))
-            {
-                for(int i = 0; i <oxygens.size();i++)
-                {
-                    Oxygen o = oxygens.get(i);
-                    if(o.toString().equals(card))
-                    {oxygens.remove(o); break;}
                 }
             }
         else
@@ -220,14 +202,44 @@ public class Astronaut implements Serializable
     }
     public int hasCard(String Card)
     {
-        return 1;
+        int qty = 0;
+        if(Card.equals("Oxygen(1)") || Card.equals("Oxygen(2)"))
+            {
+                for(int i = 0; i <oxygens.size();i++)
+                {
+                    Oxygen o = oxygens.get(i);
+                    if(o.toString().equals(Card))
+                    {
+                        qty++;
+                    }
+                }
+            }
+        else
+            {
+                for(int i = 0; i< actions.size(); i++)
+                {
+                    if(actions.get(i).toString().equals(Card))
+                    {
+                        qty++;
+                    }
+                }
+            }
+        return qty;
     } 
     public boolean hasMeltedEyeballs()
     {
+        Card c = peekAtTrack();
+        String check = c.toString();
+        if(check.equals("Solar flare"))
+        {
+            return true;
+        }
         return false;
     }
     public boolean hasWon()
     {
+        if(distanceFromShip()==0 && isAlive()==true)
+        return true;
         return false;
     }
     public boolean isAlive()
@@ -248,7 +260,7 @@ public class Astronaut implements Serializable
         }
         return val;
     }
-    public Card peekAtTrack(){return null;}
+    public Card peekAtTrack(){return ((List<Card>) track).get(track.size()-1);}
     public Oxygen siphon(){return null;}
     public Card steal(){return null;}
     public void swapTrack(Astronaut swapee)
