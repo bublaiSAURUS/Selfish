@@ -172,7 +172,7 @@ public class Astronaut implements Serializable
         else
             actions.remove(card);
         if(isAlive()==false)
-            actions = null;
+            this.actions = null;
     }
     public Card hack(String card)
     {
@@ -197,7 +197,7 @@ public class Astronaut implements Serializable
                 }
             }
         if(isAlive()==false)
-            actions = null;
+            this.actions = null;
         return null;
     }
     public int hasCard(String Card)
@@ -260,12 +260,16 @@ public class Astronaut implements Serializable
         }
         return val;
     }
-    public Card peekAtTrack(){return ((List<Card>) track).get(track.size()-1);}
+    public Card peekAtTrack()
+    {
+        if(track.size()>0)
+        return ((List<Card>) track).get(track.size()-1);
+        return null;
+    }
     public Oxygen siphon(){return null;}
     public Card steal(){return null;}
     public void swapTrack(Astronaut swapee)
     {
-
     } 
     public String toString()
     {
