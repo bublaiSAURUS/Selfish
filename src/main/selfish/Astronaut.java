@@ -292,6 +292,9 @@ public class Astronaut implements Serializable
             return o1;
         }
         Oxygen ox = oxygens.get(index);
+        oxygens.remove(ox);
+        if(isAlive()==false)
+        this.actions = null;
         return ox;
     }
     public Card steal(){return null;}
