@@ -199,18 +199,10 @@ public class Astronaut implements Serializable
      */
     public void hack(Card card)
     {
-        String n = card.toString();
-        if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
-            {
-                int val = (n.charAt(7))-'0';
-                for(int i = 0; i <oxygens.size();i++)
-                {
-                    if(oxygens.get(i).getValue()==val)
-                    {oxygens.remove(oxygens.get(i));break;}
-                }
-            }
+        if(oxygens.contains(card))
+        oxygens.remove(card);
         else
-            actions.remove(card);
+        actions.remove(card);
         if(isAlive()==false)
             this.actions = null;
     }
@@ -220,33 +212,37 @@ public class Astronaut implements Serializable
      */
     public Card hack(String card)
     {
+        int index = 0;
         if(card.equals("Oxygen(1)"))
+        {
+            for(int i = 0; i <oxygens.size();i++)
             {
-                for(int i = 0; i <oxygens.size();i++)
-                {
-                    if(oxygens.get(i).getValue()==1)
-                    {oxygens.remove(oxygens.get(i));break;}
-                }
+                if(oxygens.get(i).getValue()==1)
+                {index=i;break;}
             }
+            oxygens.remove(oxygens.get(index));
+        }
         else if(card.equals("Oxygen(2)"))
         {
             for(int i = 0; i <oxygens.size();i++)
-                {
-                    if(oxygens.get(i).getValue()==2)
-                    {oxygens.remove(oxygens.get(i));break;}
-                }
+            {
+                if(oxygens.get(i).getValue()==2)
+                {index = i;break;}
+            }
+            oxygens.remove(oxygens.get(index));
         }
         else
+        {
+            for(int i = 0; i< actions.size(); i++)
             {
-                for(int i = 0; i< actions.size(); i++)
+                if(actions.get(i).toString().equals(card))
                 {
-                    if(actions.get(i).toString().equals(card))
-                    {
-                        actions.remove(actions.get(i));
-                        break;
-                    }
+                    index = i;
+                    break;
                 }
             }
+            actions.remove(actions.get(index));
+        }
         if(isAlive()==false)
             this.actions = null;
         return null;
