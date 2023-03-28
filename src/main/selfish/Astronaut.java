@@ -47,14 +47,14 @@ public class Astronaut implements Serializable
 
     }
     /**Public method that creates the Path for the astronaut.
-     * @param card Card that has to be added as a pathway
+     * @param card Returns Card that has to be added as a pathway
      */
     public void addToTrack(Card card)
     {
         track.add(card);
     }
-    /**Public method to "breathe" in the game, returns the total qty of oxygen left.
-     * @return
+    /**Public method to "breathe" in the game 
+     * @return Returns the total qty of oxygen left.
      */
     public int breathe()
     {
@@ -79,25 +79,25 @@ public class Astronaut implements Serializable
         }
         return oxygenRemaining();
     }
-    /**Returns the how far the astronaut is from the spaceship
-     * @return
+    /**Public method to get distance from spaceship
+     * @return Returns the how far the astronaut is from the spaceship
      */
     public int distanceFromShip()
     {
         return 6-track.size();
     }
-    /**
-     * @return
+    /**Public method for action cards
+     * @return Returns list of action cards 
      */
     public List <Card> getActions()
     {
         actions.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
         return actions;
     }
-    /**
-     * @param enumerated
-     * @param excludeShields
-     * @return
+    /** Public method for string version of actions
+     * @param enumerated if the user wants enumerated actions list
+     * @param excludeShields if shields are to be excluded from consideration
+     * @return Returns the String value of cards
      */
     public String getActionsStr(boolean enumerated, boolean excludeShields)
     {
@@ -137,8 +137,8 @@ public class Astronaut implements Serializable
         return cardlist;
         return cardlist.substring(0,cardlist.length()-2);
     } 
-    /**
-     * @return
+    /** Public method to get the hand of chosen opponent
+     * @return Returns a list of cards that opponent is holding in their hands
      */
     public List <Card> getHand()
     {
@@ -156,8 +156,8 @@ public class Astronaut implements Serializable
         hand.sort((o1, o2) -> o1.toString().compareTo(o2.toString()));
         return hand;
     }
-    /**
-     * @return
+    /** Public method to get string version of above
+     * @return Returns String version of hands
      */
     public String getHandStr()
     {
@@ -190,12 +190,12 @@ public class Astronaut implements Serializable
         String hand = oxygen.substring(0,oxygen.length()-2);
         return hand+"; "+action;
     } 
-    /**
-     * @return
+    /** Public method to get track
+     * @return Returns a list of cards representing track
      */
     public Collection <Card> getTrack(){return track;}
-    /**
-     * @param card
+    /** Public method to get specified card
+     * @param card target card
      */
     public void hack(Card card)
     {
@@ -214,9 +214,9 @@ public class Astronaut implements Serializable
         if(isAlive()==false)
             this.actions = null;
     }
-    /**
-     * @param card
-     * @return
+    /** Public method to get card of opponent
+     * @param card The card to be stolen
+     * @return the card itself
      */
     public Card hack(String card)
     {
@@ -251,9 +251,9 @@ public class Astronaut implements Serializable
             this.actions = null;
         return null;
     }
-    /**
-     * @param Card
-     * @return
+    /**Public method to check if a card is there 
+     * @param Card the card to be checked
+     * @return returns the quantity of card if present
      */
     public int hasCard(String Card)
     {
@@ -281,8 +281,8 @@ public class Astronaut implements Serializable
             }
         return qty;
     } 
-    /**
-     * @return
+    /** Public method to check if the solar-flare card is behind the astronaut
+     * @return Returns true/false accordingly
      */
     public boolean hasMeltedEyeballs()
     {
@@ -294,8 +294,8 @@ public class Astronaut implements Serializable
         }
         return false;
     }
-    /**
-     * @return
+    /**Public method to check if the current player has won or not
+     * @return Returns true/false accordingly
      */
     public boolean hasWon()
     {
@@ -303,8 +303,8 @@ public class Astronaut implements Serializable
         return true;
         return false;
     }
-    /**
-     * @return
+    /** Public method to check if the present player is alive or not
+     * @return Retuens boolean true or false accordingly
      */
     public boolean isAlive()
     {
@@ -313,8 +313,8 @@ public class Astronaut implements Serializable
         return true;
         return false;
     }
-    /**
-     * @return
+    /** Public method to implement Laser-Blast card
+     * @return Returns the card that was there previously
      */
     public Card laserBlast()
     {
@@ -322,8 +322,8 @@ public class Astronaut implements Serializable
         track.remove(c);
         return c;
     }
-    /**
-     * @return
+    /** Public method to get the total quantity of oxygen remaining
+     * @return Returns the total amount of oxygen remaining
      */
     public int oxygenRemaining()
     {
@@ -335,8 +335,8 @@ public class Astronaut implements Serializable
         }
         return val;
     }
-    /**
-     * @return
+    /** Public method to get a list of entire track behind the the astronaut
+     * @return Returns the list of cards in track
      */
     public Card peekAtTrack()
     {
@@ -344,8 +344,8 @@ public class Astronaut implements Serializable
         return ((List<Card>) track).get(track.size()-1);
         return null;
     }
-    /**
-     * @return
+    /** Public method to steal oxygen
+     * @return Returns an oxygen card of value 1
      */
     public Oxygen siphon()
     {
@@ -373,8 +373,8 @@ public class Astronaut implements Serializable
         this.actions = null;
         return ox;
     }
-    /**
-     * @return
+    /** Public method to steal a card from others
+     * @return Returns the card to be stolen
      */
     public Card steal()
     {
@@ -393,8 +393,8 @@ public class Astronaut implements Serializable
         }
         return h.get(rand);
     }
-    /**
-     * @param swapee
+    /** Public method to swap the present astronaut with someone else
+     * @param swapee Returns the target astronaut to be swapped with
      */
     public void swapTrack(Astronaut swapee)
     {
@@ -402,8 +402,8 @@ public class Astronaut implements Serializable
         swapee.track = this.track;
         this.track = copy;
     } 
-    /**
-     * @return
+    /** Public method to get name of the present astronaut
+     * @return Returns the name (accordingly status) of the astronaut
      */
     public String toString()
     {
