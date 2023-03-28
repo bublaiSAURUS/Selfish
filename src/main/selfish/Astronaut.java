@@ -200,11 +200,15 @@ public class Astronaut implements Serializable
     public void hack(Card card)
     {
         if(oxygens.contains(card))
-        oxygens.remove(card);
+        {
+            oxygens.remove(card);
+            if(isAlive()==false)
+            this.actions = null;
+        }
         else
         actions.remove(card);
-        if(isAlive()==false)
-            this.actions = null;
+        //if(isAlive()==false)
+            //this.actions = null;
     }
     /** Public method to get card of opponent
      * @param card The card to be stolen
@@ -221,6 +225,8 @@ public class Astronaut implements Serializable
                 {index=i;break;}
             }
             oxygens.remove(oxygens.get(index));
+            if(isAlive()==false)
+            this.actions = null;
         }
         else if(card.equals("Oxygen(2)"))
         {
@@ -230,6 +236,8 @@ public class Astronaut implements Serializable
                 {index = i;break;}
             }
             oxygens.remove(oxygens.get(index));
+            if(isAlive()==false)
+            this.actions = null;
         }
         else
         {
@@ -243,8 +251,8 @@ public class Astronaut implements Serializable
             }
             actions.remove(actions.get(index));
         }
-        if(isAlive()==false)
-            this.actions = null;
+        //if(isAlive()==false)
+            //this.actions = null;
         return null;
     }
     /**Public method to check if a card is there 
