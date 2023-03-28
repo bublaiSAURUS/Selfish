@@ -16,8 +16,8 @@ public class Astronaut implements Serializable
     private final static long serialVersionUID = 5;
 
     /**Public Constructor for Astronaut 
-     * @param name
-     * @param game
+     * @param name: Name of the astronaut 
+     * @param game: instance of game
      */
     public Astronaut (String name, GameEngine game)
     {
@@ -28,7 +28,7 @@ public class Astronaut implements Serializable
         track = new ArrayList<Card>();
     }
     /**Public Method to add card to hand. Combines oxygen and game cards
-     * @param card
+     * @param card: Card that is to be added to hand
      */
     public void addToHand(Card card)
     {
