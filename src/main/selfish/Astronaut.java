@@ -203,7 +203,7 @@ public class Astronaut implements Serializable
         {
             oxygens.remove(card);
             if(isAlive()==false)
-            this.actions = null;
+            actions = null;
         }
         else
         actions.remove(card);
