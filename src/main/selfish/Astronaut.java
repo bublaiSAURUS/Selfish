@@ -32,6 +32,9 @@ public class Astronaut implements Serializable
      */
     public void addToHand(Card card)
     {
+        /**Public Method to add card to hand. Combines oxygen and game cards
+        * @param card: Card that is to be added to hand
+        */
         String n = card.toString();
         if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
         {
