@@ -208,7 +208,7 @@ public class Astronaut implements Serializable
         {
             if(l==1)
             {
-                this.actions = null;
+                actions.clear();
             }
             oxygens.remove(card);
         }
@@ -223,7 +223,7 @@ public class Astronaut implements Serializable
         if(card.equals("Oxygen(1)") || card.equals("Oxygen(2)"))
         {
             if(l == 1)
-            this.actions=null;
+            actions.clear();
             int val = card.charAt(7)-'0';
             for(int i = 0; i < oxygens.size(); i++)
             {
