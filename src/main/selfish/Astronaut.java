@@ -199,16 +199,19 @@ public class Astronaut implements Serializable
      */
     public void hack(Card card)
     {
-        if(oxygens.contains(card))
+        int l = oxygens.size();
+        if(actions.contains(card))
         {
-            oxygens.remove(card);
-            if(isAlive()==false)
-            actions = null;
+            actions.remove(card);
         }
         else
-        actions.remove(card);
-        //if(isAlive()==false)
-            //this.actions = null;
+        {
+            if(l==1)
+            {
+                this.actions = null;
+            }
+            oxygens.remove(card);
+        }
     }
     /** Public method to get card of opponent
      * @param card The card to be stolen
@@ -216,44 +219,36 @@ public class Astronaut implements Serializable
      */
     public Card hack(String card)
     {
-        int index = 0;
-        if(card.equals("Oxygen(1)"))
+        Card c = null; int l = oxygens.size();
+        if(card.equals("Oxygen(1)") || card.equals("Oxygen(2)"))
         {
-            for(int i = 0; i <oxygens.size();i++)
+            if(l == 1)
+            this.actions=null;
+            int val = card.charAt(7)-'0';
+            for(int i = 0; i < oxygens.size(); i++)
             {
-                if(oxygens.get(i).getValue()==1)
-                {index=i;break;}
-            }
-            oxygens.remove(oxygens.get(index));
-            if(isAlive()==false)
-            this.actions = null;
-        }
-        else if(card.equals("Oxygen(2)"))
-        {
-            for(int i = 0; i <oxygens.size();i++)
-            {
-                if(oxygens.get(i).getValue()==2)
-                {index = i;break;}
-            }
-            oxygens.remove(oxygens.get(index));
-            if(isAlive()==false)
-            this.actions = null;
-        }
-        else
-        {
-            for(int i = 0; i< actions.size(); i++)
-            {
-                if(actions.get(i).toString().equals(card))
+                Oxygen ob = oxygens.get(i);
+                if(ob.getValue()==val)
                 {
-                    index = i;
+                    c = ob;
+                    oxygens.remove(ob);
                     break;
                 }
             }
-            actions.remove(actions.get(index));
         }
-        //if(isAlive()==false)
-            //this.actions = null;
-        return null;
+        else
+        {
+            for(int i = 0; i<actions.size(); i++)
+            {
+                if(actions.get(i).toString().equals(card))
+                {
+                    c = actions.get(i);
+                    actions.remove(c);
+                    break;
+                }
+            }
+        }
+        return c;
     }
     /**Public method to check if a card is there 
      * @param Card the card to be checked
