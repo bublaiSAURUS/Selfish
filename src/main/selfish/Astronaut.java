@@ -163,12 +163,11 @@ public class Astronaut implements Serializable
         String n = card.toString();
         if(n.equals("Oxygen(1)") || n.equals("Oxygen(2)"))
             {
-                int val = (int)(n.charAt(7));
+                int val = (int)(n.charAt(7))-'0';
                 for(int i = 0; i <oxygens.size();i++)
                 {
-                    Oxygen o = oxygens.get(i);
-                    if(o.getValue()==val)
-                    {oxygens.remove(o);break;}
+                    if(oxygens.get(i).getValue()==val)
+                    {oxygens.remove(oxygens.get(i));break;}
                 }
             }
         else
@@ -178,16 +177,22 @@ public class Astronaut implements Serializable
     }
     public Card hack(String card)
     {
-        if(card.equals("Oxygen(1)") || card.equals("Oxygen(2)"))
+        if(card.equals("Oxygen(1)"))
             {
-                int val = (int)(card.charAt(7));
                 for(int i = 0; i <oxygens.size();i++)
                 {
-                    Oxygen o = oxygens.get(i);
-                    if(o.getValue()==val)
-                    {oxygens.remove(o);break;}
+                    if(oxygens.get(i).getValue()==1)
+                    {oxygens.remove(oxygens.get(i));break;}
                 }
             }
+        else if(card.equals("Oxygen(2)"))
+        {
+            for(int i = 0; i <oxygens.size();i++)
+                {
+                    if(oxygens.get(i).getValue()==2)
+                    {oxygens.remove(oxygens.get(i));break;}
+                }
+        }
         else
             {
                 for(int i = 0; i< actions.size(); i++)
