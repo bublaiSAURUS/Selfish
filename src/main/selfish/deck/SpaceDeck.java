@@ -1,7 +1,12 @@
 package selfish.deck;
 
 import java.io.Serializable;
-
+/**
+ * This is SpaceDeck class
+ * @author Sourabh Roy
+ * @ selfish
+ * @version jdk 17.0.6
+ */
 public class SpaceDeck extends Deck implements Serializable
 {
     public final static String ASTEROID_FIELD = "Asteroid field";
@@ -16,6 +21,12 @@ public class SpaceDeck extends Deck implements Serializable
     public final static String WORMHOLE = "Wormhole";
     private final static long serialVersionUID = 5;
 
+    /**Public Constructor
+     * No param
+     */
     public SpaceDeck(){}
+    /**Public Constructor
+     * @param path File path for Space Cards
+     */
     public SpaceDeck(String path){super();}
 }
