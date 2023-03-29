@@ -61,21 +61,28 @@ public abstract class Deck implements Serializable
         }
         return p;
     }
-    /** Public method to add a card
+    /**
+     * Public method to add a card
      * @param card Card to be added
      * @return Returns an int value
      */
     public int add(Card card)
     {
-        return 1;
+        cards.add(card);
+        return cards.size();
     }
-    /** Protected Method to add a list of cards
+    /** 
+     * Protected Method to add a list of cards
      * @param cards List of cards to be added
      * @return Returns an int value
      */
     protected int add(List <Card> cards)
     {
-        return 1;
+        for(Card c: cards)
+        {
+            this.cards.add(c);
+        }
+        return this.cards.size();
     }
     /** Public method to draw a card
      * @return Returns the card drawn
