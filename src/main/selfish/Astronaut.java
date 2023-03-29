@@ -6,6 +6,12 @@ import java.util.*;
 
 import selfish.deck.Card;
 import selfish.deck.Oxygen;
+/**
+ * This is Astronaut class
+ * @author Sourabh Roy
+ * @ selfish
+ * @version jdk 17.0.6
+ */
 public class Astronaut implements Serializable
 {
     private GameEngine game;

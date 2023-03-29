@@ -1,6 +1,12 @@
 package selfish.deck;
 import java.io.*;
 import java.util.*;
+/**
+ * This is Card class
+ * @author Sourabh Roy
+ * @ selfish
+ * @version jdk 17.0.6
+ */
 public class Card implements Serializable, Comparable<Card>
 {
     private String name;
