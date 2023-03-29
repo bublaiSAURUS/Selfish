@@ -1,5 +1,5 @@
 package selfish.deck;
-
+import java.util.*;
 import java.io.Serializable;
 /**
  * This is SpaceDeck class
@@ -58,5 +58,10 @@ public class SpaceDeck extends Deck implements Serializable
     /**Public Constructor
      * @param path File path for Space Cards
      */
-    public SpaceDeck(String path){super();}
+    public SpaceDeck(String path)
+    {
+        super();
+        List <Card> a = loadCards(path);
+        add(a);
+    }
 }
