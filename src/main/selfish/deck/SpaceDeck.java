@@ -61,7 +61,5 @@ public class SpaceDeck extends Deck implements Serializable
     public SpaceDeck(String path)
     {
         super();
-        List <Card> a = loadCards(path);
-        add(a);
     }
 }
