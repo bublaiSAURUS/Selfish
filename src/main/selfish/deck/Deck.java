@@ -113,6 +113,6 @@ public abstract class Deck implements Serializable
      */
     public int size()
     {
-        return 1;
+        return cards.size();
     }
 }
