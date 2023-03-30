@@ -14,7 +14,10 @@ public abstract class Deck implements Serializable
     /** Protected Constructor
      * No param
      */
-    protected Deck(){}
+    protected Deck()
+    {
+        cards = new ArrayList <Card>();
+    }
     /** Protected Class to load cards
      * @param path Path to file 
      * @return Returns list of Cards

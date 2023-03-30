@@ -65,7 +65,7 @@ public class GameDeck extends Deck implements Serializable
      */
     public GameDeck(String path)
     {
-        add(loadCards(path));
+        super.add(loadCards(path));
     }
     /** Public method to draw Oxygen cards
      * @param value Value of Oxygen card to be drawn
