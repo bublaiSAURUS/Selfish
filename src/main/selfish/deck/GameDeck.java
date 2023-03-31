@@ -81,6 +81,34 @@ public class GameDeck extends Deck implements Serializable
      */
     public Oxygen drawOxygen(int value)
     {
+        List <Card> mana = new ArrayList<>();
+        boolean check = false;
+        do
+        {
+            Card c = draw();String n = c.toString();
+            if(value==1 && n.equals("Oxygen(1)"))
+            {
+                check = true;
+                if(mana.size()>0)
+                {
+                    Collections.reverse(mana);
+                    super.add(mana);
+                }
+                return (Oxygen)c; 
+            }
+            else if(value==2 && n.equals("Oxygen(2)"))
+            {
+                check = true;
+                if(mana.size()>0)
+                {
+                    Collections.reverse(mana);
+                    super.add(mana);
+                }
+                return (Oxygen)c;
+            }
+            else
+            mana.add(c);
+        }while(check != true);
         return null;
     }
     /** Public method to split Oxygen
