@@ -220,9 +220,10 @@ public class GameEngine implements java.io.Serializable
                 {
                     a.addToHand(gameDeck.draw());
                 }
-                cummulative = cummulative+a.getHand().size();
+                else if(hand.size()==9)
+                cummulative++;
             }
-        }while(cummulative!=9*activePlayers.size());
+        }while(cummulative!=activePlayers.size());
         hasStarted = true;
     }
     /** Public Method to start turn of current player
