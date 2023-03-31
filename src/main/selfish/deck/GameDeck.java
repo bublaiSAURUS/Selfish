@@ -117,7 +117,11 @@ public class GameDeck extends Deck implements Serializable
      */
     public Oxygen[] splitOxygen(Oxygen dbl)
     {
-        return null;
+        Oxygen o1 = drawOxygen(1);
+        Oxygen o2 = drawOxygen(1);
+        Oxygen o[] = {o1, o2};
+        super.add(dbl);
+        return o;
     }
 
 
