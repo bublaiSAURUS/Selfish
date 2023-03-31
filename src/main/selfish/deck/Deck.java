@@ -92,7 +92,10 @@ public abstract class Deck implements Serializable
      */
     public Card draw()
     {
-        return null;
+        List <Card> copy = (List <Card>) cards;
+        Card c = copy.get(cards.size()-1);
+        cards.remove(c);
+        return c;
     }
     /** Public method to remove the specified card
      * @param card Card to be removed
