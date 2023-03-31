@@ -112,13 +112,7 @@ public abstract class Deck implements Serializable
      */
     public void shuffle(Random random)
     {
-        List <Card> copy = (List <Card>) cards;
-        for(int i =0; i<copy.size(); i++)
-        {
-            cards.remove(copy.get(i));
-        }
-        Collections.shuffle(copy, random);
-        add(copy);
+        Collections.shuffle((List <Card>) cards, random);
     }
     /** Public method to get size
      * @return Returns an integer value
