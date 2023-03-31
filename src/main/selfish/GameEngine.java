@@ -42,9 +42,9 @@ public class GameEngine implements java.io.Serializable
     public GameEngine(long seed, String GameDeck, String SpaceDeck)
     {
         gameDeck = new GameDeck(GameDeck);
-        gameDiscard = new GameDeck(GameDeck);
+        gameDiscard = new GameDeck();
         spaceDeck = new SpaceDeck(SpaceDeck);
-        spaceDiscard = new SpaceDeck(SpaceDeck);
+        spaceDiscard = new SpaceDeck();
         activePlayers = new ArrayList<Astronaut>();
         corpses = new ArrayList<Astronaut>();
         random = new Random(seed);
