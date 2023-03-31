@@ -99,14 +99,23 @@ public abstract class Deck implements Serializable
      */
     public void remove(Card card)
     {
-
+        if(cards.contains(card))
+        {
+            cards.remove(card);
+        }
     }
     /** Punlic method to suffle cards
      * @param random Random object for shuffling cards
      */
     public void shuffle(Random random)
     {
-
+        List <Card> copy = (List <Card>) cards;
+        for(int i =0; i<cards.size(); i++)
+        {
+            cards.remove(copy.get(i));
+        }
+        Collections.shuffle(copy, random);
+        add(copy);
     }
     /** Public method to get size
      * @return Returns an integer value
