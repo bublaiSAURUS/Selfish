@@ -29,7 +29,11 @@ public class GameEngine implements java.io.Serializable
     /**Private Empty Constructor
      * No param
      */
-    private GameEngine(){}
+    private GameEngine()
+    {
+        activePlayers = new ArrayList<Astronaut>();
+        corpses = new ArrayList<Astronaut>();
+    }
     /**Public Constructor 
      * @param seed Long value for Random Object seed
      * @param GameDeck Absolute Path for Game Cards
@@ -42,7 +46,10 @@ public class GameEngine implements java.io.Serializable
         spaceDeck = new SpaceDeck(SpaceDeck);
         spaceDiscard = new SpaceDeck(SpaceDeck);
         activePlayers = new ArrayList<Astronaut>();
+        corpses = new ArrayList<Astronaut>();
         random = new Random(seed);
+        gameDeck.shuffle(random);
+        spaceDeck.shuffle(random);
     }
     /**Public Method to add Player
      * @param player Name of player
