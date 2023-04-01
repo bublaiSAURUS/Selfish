@@ -112,6 +112,8 @@ public class GameEngine implements java.io.Serializable
      */
     public Astronaut getCurrentPlayer()
     {
+        if(hasStarted==false)
+        return null;
         currentPlayer = ((List<Astronaut>)activePlayers).get(0);
         return currentPlayer;
     }
@@ -149,15 +151,11 @@ public class GameEngine implements java.io.Serializable
     public Astronaut getWinner()
     {
         Astronaut winner = null;
-        if(currentPlayer.hasWon()==true)
-        return currentPlayer;
-        else
+        List <Astronaut> checklist = getAllPlayers();
+        for(int i = 0; i<checklist.size(); i++)
         {
-            for(int i = 0; i<activePlayers.size();i++)
-            {
-                if(((List<Astronaut>)activePlayers).get(i).hasWon()==true)
-                winner = ((List<Astronaut>)activePlayers).get(i);
-            }
+            if(checklist.get(i).hasWon()==true)
+            winner = checklist.get(i);
         }
         return winner;
     }
