@@ -72,6 +72,10 @@ public class Astronaut implements Serializable
             if(v==1)
             {
                 oxygens.remove(ob);
+                if(isAlive()==false)
+                {
+                    game.killPlayer(this);
+                }
                 return oxygenRemaining();
             }
             else
@@ -82,6 +86,11 @@ public class Astronaut implements Serializable
             Oxygen ob = oxygens.get(0);
             oxygens.remove(ob);
             oxygens.add(new Oxygen(1));
+            if(isAlive()==false)
+            {
+                game.killPlayer(this);
+            }
+            
         }
         return oxygenRemaining();
     }
@@ -218,6 +227,10 @@ public class Astronaut implements Serializable
             }
             oxygens.remove(card);
         }
+        if(isAlive()==false)
+        {
+            game.killPlayer(this);
+        }
     }
     /** Public method to get card of opponent
      * @param card The card to be stolen
@@ -253,6 +266,10 @@ public class Astronaut implements Serializable
                     break;
                 }
             }
+        }
+        if(isAlive()==false)
+        {
+            game.killPlayer(this);
         }
         return c;
     }
@@ -370,12 +387,19 @@ public class Astronaut implements Serializable
             oxygens.remove(o);
             Oxygen o1 = new Oxygen(1);
             oxygens.add(o1);
+            if(isAlive()==false)
+            {
+                game.killPlayer(this);
+            }
             return o1;
         }
         Oxygen ox = oxygens.get(index);
         oxygens.remove(ox);
         if(isAlive()==false)
-        this.actions = null;
+        {
+            this.actions = null;
+            game.killPlayer(this);
+        }
         return ox;
     }
     /** Public method to steal a card from others
@@ -395,6 +419,10 @@ public class Astronaut implements Serializable
         else
         {
             actions.remove(h.get(rand));
+        }
+        if(isAlive()==false)
+        {
+            game.killPlayer(this);
         }
         return h.get(rand);
     }
