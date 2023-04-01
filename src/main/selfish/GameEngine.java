@@ -176,7 +176,17 @@ public class GameEngine implements java.io.Serializable
      * @param deck1 Deck 1
      * @param deck2 Deck 2
      */
-    public void mergeDecks(Deck deck1, Deck deck2){}
+    public void mergeDecks(Deck deck1, Deck deck2)
+    {
+        if(deck1.size() == 0)
+        {
+            while(deck2.size()!=0)
+            {
+                Card c = deck2.draw();
+                deck1.add(c);
+            }
+        }
+    }
     /** Public Method to save the game
      * @param path File path where it will be saved
      */
@@ -215,7 +225,10 @@ public class GameEngine implements java.io.Serializable
      * @param dbl Double oxygen cylinders
      * @return Returns a list of oxygen cards (Single-valued)
      */
-    public Oxygen[] splitOxygen(Oxygen dbl){return null;}
+    public Oxygen[] splitOxygen(Oxygen dbl)
+    {
+        return null;
+    }
     /** Public method to start the game
      * No param
      */
@@ -262,5 +275,32 @@ public class GameEngine implements java.io.Serializable
      * @param traveller Specified player to be moved
      * @return Returns the card in his track 1 unit away
      */
-    public Card travel(Astronaut traveller){return null;}
+    public Card travel(Astronaut traveller)
+    {
+        Card p = null;
+        if(traveller.hasCard("Oxygen(2)")!=0)
+        {
+            Card c = traveller.hack("Oxygen(2)");
+            gameDiscard.add(c);
+            p = getSpaceDeck().draw();
+            if(p.toString().equals("Gravitational anomaly"))
+            return p;
+            else
+            traveller.addToTrack(getSpaceDeck().draw());
+        }
+        else
+        {
+            for(int i = 0; i<2; i++)
+            {
+                Card c = traveller.hack("Oxygen(1)");
+                gameDiscard.add(c);
+            }
+            p = getSpaceDeck().draw();
+            if(p.toString().equals("Gravitational anomaly"))
+            return p;
+            else
+            traveller.addToTrack(getSpaceDeck().draw());
+        }
+        return p;
+    }
 }
