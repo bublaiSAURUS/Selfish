@@ -68,10 +68,14 @@ public class GameEngine implements java.io.Serializable
     public int endTurn()
     {
         if(currentPlayer.isAlive())
-       {
-        
+       {        
         activePlayers.add(currentPlayer);
        }
+       else
+       {
+        killPlayer(currentPlayer);
+       }
+        currentPlayer = null;
         return activePlayers.size();
     }
     /** Public method to check if Game is over
@@ -99,6 +103,7 @@ public class GameEngine implements java.io.Serializable
             {
                 All.add(corpses.get(i));
             }
+            if(currentPlayer!=null && All.contains(currentPlayer)==false)
             All.add(currentPlayer);
         return All;
     }
