@@ -147,14 +147,16 @@ public class GameEngine implements java.io.Serializable
      */
     public Astronaut getWinner()
     {
-        Astronaut winner = null;
         List <Astronaut> checklist = getAllPlayers();
         for(int i = 0; i<checklist.size(); i++)
         {
-            if(checklist.get(i).hasWon()==true)
-            winner = checklist.get(i);
+            if(checklist.get(i).isAlive()==true)
+            {
+                if(checklist.get(i).distanceFromShip()==0)
+                return(checklist.get(i));
+            }
         }
-        return winner;
+        return null;
     }
     /** Public Method to kill a player
      * @param corpse Player to be killed
