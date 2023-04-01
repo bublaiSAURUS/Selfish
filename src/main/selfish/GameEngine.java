@@ -314,6 +314,10 @@ public class GameEngine implements java.io.Serializable
         {
             Card c = traveller.hack("Oxygen(2)");
             gameDiscard.add(c);
+            if(traveller.isAlive()==false)
+            {
+                killPlayer(traveller);
+            }
             p = getSpaceDeck().draw();
             if(p.toString().equals("Gravitational anomaly"))
             return p;
@@ -326,6 +330,10 @@ public class GameEngine implements java.io.Serializable
             {
                 Card c = traveller.hack("Oxygen(1)");
                 gameDiscard.add(c);
+            }
+            if(traveller.isAlive()==false)
+            {
+                killPlayer(traveller);
             }
             p = getSpaceDeck().draw();
             if(p.toString().equals("Gravitational anomaly"))
