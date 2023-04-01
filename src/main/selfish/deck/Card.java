@@ -52,8 +52,12 @@ public class Card implements Serializable, Comparable<Card>
     @Override
     public int compareTo(Card c)
     {
-        String c1 = name;
-        String c2 = c.toString();
-        return c1.compareTo(c2);
+        String c1 = this.name;
+        String c2 = c.name;
+        if(c1.compareTo(c2)>0)
+        return 1;
+        else if(c1.compareTo(c2)<0)
+        return -1;
+        return 0;
     }
 }

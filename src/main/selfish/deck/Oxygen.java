@@ -43,8 +43,8 @@ public class Oxygen extends Card implements Serializable
      * @param o Oxygen Card to be compared to 
      * @return Returns the net result 
      */
-    public int compareTo(Oxygen o)
-    {
+    public int compareTo(Card c)
+    {   Oxygen o = (Oxygen) c;
         return value-o.getValue();
     }
 }
