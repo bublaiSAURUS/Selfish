@@ -112,9 +112,6 @@ public class GameEngine implements java.io.Serializable
      */
     public Astronaut getCurrentPlayer()
     {
-        if(hasStarted==false)
-        return null;
-        currentPlayer = ((List<Astronaut>)activePlayers).get(0);
         return currentPlayer;
     }
     /** Public Method to get number of players from the start of game
@@ -298,9 +295,10 @@ public class GameEngine implements java.io.Serializable
      */
     public void startTurn()
     {
-        System.out.println(getCurrentPlayer().toString()+":");
+        currentPlayer = ((List<Astronaut>)activePlayers).get(0);
+        System.out.println(currentPlayer.toString()+":");
         //System.out.println(((List<Astronaut>) activePlayers).get(3));
-        activePlayers.remove(getCurrentPlayer());
+        activePlayers.remove(currentPlayer);
         
     }
     /** Public Method to move player
