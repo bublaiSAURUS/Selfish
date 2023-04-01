@@ -318,7 +318,7 @@ public class GameEngine implements java.io.Serializable
             if(p.toString().equals("Gravitational anomaly"))
             return p;
             else
-            traveller.addToTrack(getSpaceDeck().draw());
+            traveller.addToTrack(p);
         }
         else
         {
@@ -331,7 +331,7 @@ public class GameEngine implements java.io.Serializable
             if(p.toString().equals("Gravitational anomaly"))
             return p;
             else
-            traveller.addToTrack(getSpaceDeck().draw());
+            traveller.addToTrack(p);
         }
         return p;
     }
