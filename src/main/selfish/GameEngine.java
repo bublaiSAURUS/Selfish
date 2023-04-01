@@ -268,32 +268,29 @@ public class GameEngine implements java.io.Serializable
      */
     public void startGame()
     {
-        int cummulative = 0;
         for(int i = 0; i<activePlayers.size(); i++)
         {
             Astronaut a = ((List<Astronaut>)activePlayers).get(i);
             Oxygen o2 = gameDeck.drawOxygen(2);
             a.addToHand(o2);
         }
-        do
+        for(int j = 1; j<=4; j++)
         {
             for(int i = 0; i<activePlayers.size(); i++)
             {
                 Astronaut a = ((List<Astronaut>)activePlayers).get(i);
-                List <Card> hand = a.getHand();
-                if(hand.size()>0 && hand.size()<5)
-                {
-                    Oxygen o1 = gameDeck.drawOxygen(1);
-                    a.addToHand(o1);
-                }
-                else if(hand.size()>=5 && hand.size()<9)
-                {
-                    a.addToHand(gameDeck.draw());
-                }
-                else if(hand.size()==9)
-                cummulative++;
+                Oxygen o1 = gameDeck.drawOxygen(1);
+                a.addToHand(o1); 
             }
-        }while(cummulative!=activePlayers.size());
+        }
+        for(int j = 1; j<=4; j++)
+        {
+            for(int i = 0; i<activePlayers.size(); i++)
+            {
+                Astronaut a = ((List<Astronaut>)activePlayers).get(i);
+                a.addToHand(getGameDeck().draw());
+            }
+        }
         hasStarted = true;
     }
     /** Public Method to start turn of current player
