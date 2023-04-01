@@ -40,11 +40,14 @@ public class Oxygen extends Card implements Serializable
         //throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
    // }    
     /** Public method to Compare 2 Oxygen Cards by value
-     * @param o Oxygen Card to be compared to 
+     * @param c Card to be compared to 
      * @return Returns the net result 
      */
-    public int compareTo(Oxygen o)
-    {    
+    public int compareTo(Card c)
+    {   String k = c.toString();
+        if(k.equals("Oxygen(1)")==false && k.equals("Oxygen(2)")==false)
+        return(toString().compareTo(k));
+        Oxygen o = (Oxygen) c;
         return value-o.getValue();
     }
 }

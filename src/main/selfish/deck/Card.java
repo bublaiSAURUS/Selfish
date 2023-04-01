@@ -53,7 +53,7 @@ public class Card implements Serializable, Comparable<Card>
     public int compareTo(Card c)
     {
         String c1 = this.name;
-        String c2 = c.name;
+        String c2 = c.toString();
         if(c1.compareTo(c2)>0)
         return 1;
         else if(c1.compareTo(c2)<0)
