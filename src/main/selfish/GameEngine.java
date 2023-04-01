@@ -227,7 +227,38 @@ public class GameEngine implements java.io.Serializable
      */
     public Oxygen[] splitOxygen(Oxygen dbl)
     {
-        return null;
+        Oxygen o[] = new Oxygen[2]; int count = 0;
+        if(getGameDeck().size()==0 || getGameDeck().drawOxygen(1)==null)
+        {
+            getGameDeck().add(dbl);
+            return getGameDiscard().splitOxygen(dbl);
+        }
+        else if(getGameDiscard().size()==0 || getGameDiscard().drawOxygen(1)==null)
+        {
+            getGameDiscard().add(dbl);
+            return getGameDeck().splitOxygen(dbl);
+        }
+        Oxygen o1[] = getGameDeck().splitOxygen(dbl);
+        for(int i =0; i<o1.length; i++)
+        {
+            if(o1[i]!=null && count+1!=2)
+            {
+                o[count] = o1[i]; count++;
+            }
+        }
+        if(count==1)
+            {
+                Oxygen o2[] = getGameDiscard().splitOxygen(dbl);
+                for(int i =0; i<o2.length; i++)
+                {
+                    if(o2[i]!=null && count+1!=2)
+                    {
+                        o[count] = o2[i]; count++;
+                    }
+                }
+            }
+        getGameDeck().add(dbl);
+        return o;
     }
     /** Public method to start the game
      * No param
