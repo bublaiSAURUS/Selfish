@@ -79,7 +79,11 @@ public class GameEngine implements java.io.Serializable
      */
     public boolean gameOver()
     {
+        if(getFullPlayerCount()==corpses.size())
         return true;
+        else if(getWinner()!=null)
+        return true;
+        return false;
     }
     /** Public method to get all active players
      * @return Returns a List 
@@ -91,6 +95,11 @@ public class GameEngine implements java.io.Serializable
             {
                 All.add(((List<Astronaut>) activePlayers).get(i));
             }
+            for(int i = 0; i<corpses.size(); i++)
+            {
+                All.add(corpses.get(i));
+            }
+            All.add(currentPlayer);
         return All;
     }
     /** Public Method to get the player with ongoiong turn
@@ -106,7 +115,8 @@ public class GameEngine implements java.io.Serializable
      */
     public int getFullPlayerCount()
     {
-        return 5;
+        List<Astronaut> full = getAllPlayers();
+        return full.size();
     }
     /** Public Method to get the game deck
      * @return Returns set of gamecards available
@@ -133,14 +143,26 @@ public class GameEngine implements java.io.Serializable
      */
     public Astronaut getWinner()
     {
+        Astronaut winner = null;
+        if(currentPlayer.hasWon()==true)
         return currentPlayer;
+        else
+        {
+            for(int i = 0; i<activePlayers.size();i++)
+            {
+                if(((List<Astronaut>)activePlayers).get(i).hasWon()==true)
+                winner = ((List<Astronaut>)activePlayers).get(i);
+            }
+        }
+        return winner;
     }
     /** Public Method to kill a player
      * @param corpse Player to be killed
      */
     public void killPlayer(Astronaut corpse)
     {
-
+        corpses.add(corpse);
+        activePlayers.remove(corpse);
     }
     /** Public Method to load the game
      * @param path String path to get the file to load
