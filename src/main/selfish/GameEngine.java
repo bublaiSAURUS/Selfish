@@ -321,9 +321,14 @@ public class GameEngine implements java.io.Serializable
     }
     /** Public method to start the game
      * No param
+     * @throws Exception
      */
-    public void startGame()
+    public void startGame() throws Exception
     {
+        if(hasStarted==true)
+        {
+            throw new IllegalStateException();
+        }
         for(int i = 0; i<activePlayers.size(); i++)
         {
             Astronaut a = ((List<Astronaut>)activePlayers).get(i);

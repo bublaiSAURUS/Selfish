@@ -13,6 +13,8 @@ public class GameException extends Exception
      * @param e The throwable object
      */
     public GameException(String msg, Throwable e)
-    {}
+    {
+        super(msg, e);
+    }
 }
 
