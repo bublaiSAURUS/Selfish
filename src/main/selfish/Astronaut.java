@@ -72,6 +72,7 @@ public class Astronaut implements Serializable
             if(v==1)
             {
                 oxygens.remove(ob);
+                game.getGameDiscard().add(ob);
                 if(isAlive()==false)
                 {
                     game.killPlayer(this);
@@ -85,6 +86,7 @@ public class Astronaut implements Serializable
         {
             Oxygen ob = oxygens.get(0);
             oxygens.remove(ob);
+            game.getGameDiscard().add(ob);
             oxygens.add(new Oxygen(1));
             if(isAlive()==false)
             {
