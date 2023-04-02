@@ -238,54 +238,49 @@ public class GameEngine implements java.io.Serializable
     public Oxygen[] splitOxygen(Oxygen dbl)
     {
         Oxygen o[] = new Oxygen[2];
-        if(getGameDeck().size()>=2) 
+        if(getGameDeck().size()==0)
         {
-            Oxygen hold1[] = getGameDeck().splitOxygen(dbl);
-            if(hold1[0]!=null && hold1[1]!=null)
-            o = hold1;
-            else
-            {
-                Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
-                if(hold1[0].toString().equals("Oxygen(1)"))
-                o[0] = hold1[1];
-                else
-                o[0] = hold2[0];
-                o[1] = hold2[1];
-            }
+            Oxygen hold[] = getGameDiscard().splitOxygen(dbl);
+            o[0] = hold[0];
+            o[1] = hold[1];
         }
-        else if(getGameDeck().size()==1 && getGameDiscard().size()>=2)
+        else if(getGameDiscard().size()==0)
         {
-            Card hold1 = getGameDeck().draw();
-            Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
-            if(hold1.toString().equals("Oxygen(1)"))
-            {
-                o[0] = (Oxygen)hold1;
-                o[1] = hold2[1];
-            }
-            else
-            {
-                o[0] = hold2[0];
-                o[1] = hold2[1];
-            }    
+            Oxygen hold[] = getGameDeck().splitOxygen(dbl);
+            o[0] = hold[0];
+            o[1] = hold[1];
         }
         else if(getGameDeck().size()==1 && getGameDiscard().size()==1)
         {
             Oxygen hold1 = (Oxygen)getGameDeck().draw();
             Oxygen hold2 = (Oxygen)getGameDiscard().draw();
             o[0] = hold1;
-            o[1] = hold2;  
+            o[1] = hold2;
         }
-        else if(getGameDiscard().size()==0)
+        else if(getGameDeck().size()==1 && getGameDiscard().size()>=2)
         {
-            Oxygen hold1[] = getGameDeck().splitOxygen(dbl);
-            o[0] = hold1[0];
-            o[1] = hold1[1];   
+            Card hold1 = getGameDeck().draw();
+            if(hold1.toString().equals("Oxygen(1)"))
+            {
+                o[0] = (Oxygen)hold1;
+                o[1] =  getGameDiscard().drawOxygen(1);
+            }
+            else
+            {
+                o[0] = getGameDiscard().drawOxygen(1);
+                o[1] = getGameDiscard().drawOxygen(1);
+            }
         }
-        else if(getGameDeck().size()==0)
+        else if(getGameDeck().size()>=2)
         {
-            Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
-            o[0] = hold2[0];
-            o[1] = hold2[1];
+            Oxygen hold[] = getGameDeck().splitOxygen(dbl);
+            if(hold[0]!=null && hold[1]!=null)
+            o = hold;
+            else
+            {
+                o[0] = hold[1];
+                o[1] = getGameDiscard().drawOxygen(1);
+            }
         }
         getGameDeck().add(dbl);
         return o;
