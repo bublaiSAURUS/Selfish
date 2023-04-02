@@ -220,9 +220,9 @@ public class GameEngine implements java.io.Serializable
             File file = new File(path);  
             if (file.createNewFile()) 
             {  
-              System.out.println("File created: " + file.getName());  
-              System.out.println("Absolute path: " + file.getAbsolutePath());  
-              FileOutputStream f = new FileOutputStream(file);
+                System.out.println("File created: " + file.getName());  
+                System.out.println("Absolute path: " + file.getAbsolutePath());  
+                FileOutputStream f = new FileOutputStream(file);
                 ObjectOutputStream out = new ObjectOutputStream(f);
                 //out.writeObject(gameDeck);
                 //out.writeObject(spaceDeck); 
@@ -240,7 +240,22 @@ public class GameEngine implements java.io.Serializable
             } 
             else 
             {  
-              System.out.println("File already exists.");  
+                System.out.println("File already exists.");
+                FileOutputStream f = new FileOutputStream(file);
+                ObjectOutputStream out = new ObjectOutputStream(f);
+                //out.writeObject(gameDeck);
+                //out.writeObject(spaceDeck); 
+                //out.writeObject(gameDiscard); 
+                //out.writeObject(spaceDiscard); 
+                //out.writeObject(random);
+                //out.writeObject(activePlayers);
+                //out.writeObject(corpses);
+                //out.writeObject(currentPlayer);
+                //out.writeObject(hasStarted);
+                out.writeObject(this);   
+                out.close();
+                f.close();
+                System.out.println("Object has been serialized");  
             }  
           } catch (IOException e) 
           {
