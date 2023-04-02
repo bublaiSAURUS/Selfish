@@ -188,6 +188,14 @@ public class GameEngine implements java.io.Serializable
                 deck1.add(c);
             }
         }
+        else
+        {
+            while(deck2.size()!=0)
+            {
+                Card c = deck2.draw();
+                deck1.add(c);
+            }   
+        }
     }
     /** Public Method to save the game
      * @param path File path where it will be saved
