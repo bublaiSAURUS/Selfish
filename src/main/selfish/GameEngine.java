@@ -172,6 +172,20 @@ public class GameEngine implements java.io.Serializable
      */
     public static GameEngine loadState(String path)
     {
+        try
+        {
+            FileInputStream file = new FileInputStream(path);
+            ObjectInputStream in = new ObjectInputStream(file);
+            GameEngine LoadedGame = (GameEngine) in.readObject();
+            in.close();
+            file.close();
+            return LoadedGame;
+        }catch (Exception e) 
+        {
+          System.out.println("An error occurred.");
+          e.printStackTrace();  
+        }
+
         return null;
     }
     /** Public Method to merge two decks
@@ -210,12 +224,16 @@ public class GameEngine implements java.io.Serializable
               System.out.println("Absolute path: " + file.getAbsolutePath());  
               FileOutputStream f = new FileOutputStream(file);
                 ObjectOutputStream out = new ObjectOutputStream(f);
-                out.writeObject(gameDeck);
-                out.writeObject(spaceDeck); 
-                out.writeObject(gameDiscard); 
-                out.writeObject(spaceDiscard); 
-                out.writeObject(random);
-                out.writeObject(activePlayers);    
+                //out.writeObject(gameDeck);
+                //out.writeObject(spaceDeck); 
+                //out.writeObject(gameDiscard); 
+                //out.writeObject(spaceDiscard); 
+                //out.writeObject(random);
+                //out.writeObject(activePlayers);
+                //out.writeObject(corpses);
+                //out.writeObject(currentPlayer);
+                //out.writeObject(hasStarted);
+                out.writeObject(this);   
                 out.close();
                 f.close();
                 System.out.println("Object has been serialized");
