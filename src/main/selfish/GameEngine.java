@@ -267,7 +267,7 @@ public class GameEngine implements java.io.Serializable
                 o[1] =  getGameDiscard().drawOxygen(1);
             }
             else
-            {
+            {   getGameDeck().add(hold1);
                 o[0] = getGameDiscard().drawOxygen(1);
                 o[1] = getGameDiscard().drawOxygen(1);
             }
