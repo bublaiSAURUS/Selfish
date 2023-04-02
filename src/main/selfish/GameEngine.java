@@ -242,7 +242,7 @@ public class GameEngine implements java.io.Serializable
         {
             Oxygen hold1[] = getGameDeck().splitOxygen(dbl);
             if(hold1[0]!=null && hold1[1]!=null)
-            return hold1;
+            o = hold1;
             else
             {
                 Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
@@ -256,14 +256,14 @@ public class GameEngine implements java.io.Serializable
         else if(getGameDeck().size()==1 && getGameDiscard().size()>=2)
         {
             Card hold1 = getGameDeck().draw();
+            Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
             if(hold1.toString().equals("Oxygen(1)"))
             {
                 o[0] = (Oxygen)hold1;
-                o[1] = getGameDiscard().drawOxygen(1);
+                o[1] = hold2[1];
             }
             else
             {
-                Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
                 o[0] = hold2[0];
                 o[1] = hold2[1];
             }    
@@ -277,15 +277,15 @@ public class GameEngine implements java.io.Serializable
         }
         else if(getGameDiscard().size()==0)
         {
-            Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
-            o[0] = hold2[0];
-            o[1] = hold2[1];   
+            Oxygen hold1[] = getGameDeck().splitOxygen(dbl);
+            o[0] = hold1[0];
+            o[1] = hold1[1];   
         }
         else if(getGameDeck().size()==0)
         {
-            Oxygen hold1[] = getGameDeck().splitOxygen(dbl);
-            o[0] = hold1[0];
-            o[1] = hold1[1];
+            Oxygen hold2[] = getGameDiscard().splitOxygen(dbl);
+            o[0] = hold2[0];
+            o[1] = hold2[1];
         }
         getGameDeck().add(dbl);
         return o;
