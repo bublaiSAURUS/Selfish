@@ -64,6 +64,7 @@ public abstract class Deck implements Serializable
         }
         return p;
     }
+    
     /**Public method to add a card
      * @param card Card to be added
      * @return Returns the total number
@@ -73,6 +74,7 @@ public abstract class Deck implements Serializable
         cards.add(card);
         return cards.size();
     }
+    
     /**Public method to add a list of cards
      * @param cards List of cards to be added
      * @return Returns the total number
