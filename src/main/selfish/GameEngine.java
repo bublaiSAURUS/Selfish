@@ -256,6 +256,7 @@ public class GameEngine implements java.io.Serializable
             Oxygen hold2 = (Oxygen)getGameDiscard().draw();
             o[0] = hold1;
             o[1] = hold2;
+            getGameDeck().add(dbl);
         }
         else if(getGameDeck().size()==1 && getGameDiscard().size()>=2)
         {
@@ -270,6 +271,7 @@ public class GameEngine implements java.io.Serializable
                 o[0] = getGameDiscard().drawOxygen(1);
                 o[1] = getGameDiscard().drawOxygen(1);
             }
+            getGameDeck().add(dbl);
         }
         else if(getGameDeck().size()>=2)
         {
