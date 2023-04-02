@@ -64,20 +64,18 @@ public abstract class Deck implements Serializable
         }
         return p;
     }
-    /**
-     * Public method to add a card
+    /**Public method to add a card
      * @param card Card to be added
-     * @return Returns an int value
+     * @return Returns the total number
      */
     public int add(Card card)
     {
         cards.add(card);
         return cards.size();
     }
-    /** 
-     * Protected Method to add a list of cards
+    /**Public method to add a list of cards
      * @param cards List of cards to be added
-     * @return Returns an int value
+     * @return Returns the total number
      */
     protected int add(List <Card> cards)
     {
@@ -107,7 +105,7 @@ public abstract class Deck implements Serializable
             cards.remove(card);
         }
     }
-    /** Punlic method to suffle cards
+    /** Public method to suffle cards
      * @param random Random object for shuffling cards
      */
     public void shuffle(Random random)
