@@ -209,8 +209,9 @@ public class Astronaut implements Serializable
      * @return Returns a list of cards representing track
      */
     public Collection <Card> getTrack(){return track;}
-    /** Public method to get specified card
-     * @param card target card
+    /** Public method to get a specific card
+     * @param card Card to be taken
+     * @throws IllegalArgumentException
      */
     public void hack(Card card) throws IllegalArgumentException
     {
@@ -250,12 +251,17 @@ public class Astronaut implements Serializable
             game.killPlayer(this);
         }
     }
-    /** Public method to get card of opponent
-     * @param card The card to be stolen
-     * @return the card itself
+    /** Public method to get a target card by name
+     * @param card Name of Card to be obtained
+     * @return Returns the required card
+     * @throws IllegalArgumentException
      */
-    public Card hack(String card)
+    public Card hack(String card)throws IllegalArgumentException
     {
+        if(card == null)
+        {
+            throw new IllegalArgumentException("Card Name is null", null);
+        }
         Card c = null; int l = oxygens.size();
         if(card.equals("Oxygen(1)") || card.equals("Oxygen(2)"))
         {
@@ -284,6 +290,10 @@ public class Astronaut implements Serializable
                     break;
                 }
             }
+        }
+        if(c == null)
+        {
+            throw new IllegalArgumentException("Card not available", null);
         }
         if(isAlive()==false)
         {
@@ -353,11 +363,16 @@ public class Astronaut implements Serializable
         return true;
         return false;
     }
-    /** Public method to implement Laser-Blast card
-     * @return Returns the card that was there previously
+    /** Public method for LaserBlast
+     * @return Card from target's track
+     * @throws IllegalArgumentException
      */
-    public Card laserBlast()
+    public Card laserBlast() throws IllegalArgumentException
     {
+        if(distanceFromShip()==6)
+        {
+            throw new IllegalArgumentException("You cannot do this!!", null);
+        }
         Card c = ((List<Card>) track).get(track.size()-1);
         track.remove(c);
         return c;
