@@ -1,8 +1,5 @@
 package selfish.deck;
 import java.util.*;
-
-import selfish.GameException;
-
 import java.io.*;
 /**
  * This is Deck class
@@ -24,9 +21,8 @@ public abstract class Deck implements Serializable
     /** Protected Class to load cards
      * @param path Path to file 
      * @return Returns list of Cards
-     * @throws GameException Invalid path
      */
-    protected static List <Card> loadCards(String path) throws GameException
+    protected static List <Card> loadCards(String path)
     {
         List <Card> Cards = new ArrayList<>();
         try
@@ -48,10 +44,7 @@ public abstract class Deck implements Serializable
                     Cards.add(elements[i]);
                 }
             }
-        }catch (Exception e)
-        {
-            throw new GameException("File not found", new FileNotFoundException());
-        }
+        }catch (Exception e){}
         return Cards;
     }
     /** Protected class to get an array of Cards
@@ -94,16 +87,11 @@ public abstract class Deck implements Serializable
         }
         return this.cards.size();
     }
-
-    /**Public method to draw a card
+    /** Public method to draw a card
      * @return Returns the card drawn
      */
-    public Card draw() throws IllegalStateException
+    public Card draw()
     {
-        if(this.size()==0)
-        {
-            throw new IllegalStateException("Not possible!", null);
-        }
         List <Card> copy = (List <Card>) cards;
         Card c = copy.get(cards.size()-1);
         cards.remove(c);

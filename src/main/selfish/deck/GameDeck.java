@@ -1,9 +1,5 @@
 package selfish.deck;
 import java.util.*;
-
-import selfish.GameException;
-
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 /**
  * This is GameDeck class
@@ -67,15 +63,9 @@ public class GameDeck extends Deck implements Serializable
     /** Public constructor
      * @param path Path of file with game cards
      */
-    public GameDeck(String path) throws GameException
+    public GameDeck(String path)
     {
-        try
-        {
-            super.add(loadCards(path));
-        }catch(Exception e)
-        {
-            throw new GameException("File path invalid", new FileNotFoundException());
-        }
+        super.add(loadCards(path));
         for(int i = 1; i <=10; i++)
         {
             super.add(new Oxygen(2));
@@ -89,18 +79,13 @@ public class GameDeck extends Deck implements Serializable
      * @param value Value of Oxygen card to be drawn
      * @return Returns the Oxygen Card drawn
      */
-    public Oxygen drawOxygen(int value) throws IllegalStateException
+    public Oxygen drawOxygen(int value)
     {
-        if(this.size()==0)
-        {
-            throw new IllegalStateException("Not possible", null);
-        }
-        int l = this.size();
         List <Card> mana = new ArrayList<>();
-        boolean check = false; Card c = null;
+        boolean check = false;
         do
         {
-            c = draw();String n = c.toString();
+            Card c = draw();String n = c.toString();
             if(value==1 && n.equals("Oxygen(1)"))
             {
                 check = true;
@@ -123,32 +108,21 @@ public class GameDeck extends Deck implements Serializable
             }
             else
             mana.add(c);
-        }while(check != true && mana.size()!=l);
-        if(c==null)
-        {
-            super.add(mana);
-            throw new IllegalStateException("Not available", null);
-        }
-        return (Oxygen) c;
+        }while(check != true);
+        return null;
     }
     /** Public method to split Oxygen
      * @param dbl Oxygen Card of double value
      * @return Returns a list of single valued oxygen
      */
-    public Oxygen[] splitOxygen(Oxygen dbl) throws IllegalArgumentException
+    public Oxygen[] splitOxygen(Oxygen dbl)
     {
-        if(dbl.getValue()==1)
-        {
-            throw new IllegalArgumentException("NOT possible", null);
-        }
         Oxygen o1 = drawOxygen(1);
         Oxygen o2 = drawOxygen(1);
-        if(o1==null || o2==null)
-        {
-            throw new IllegalArgumentException("Not enough Oxygen", null);
-        }
         Oxygen o[] = {o2, o1};
         super.add(dbl);
         return o;
     }
+
+
 }
