@@ -39,11 +39,23 @@ public class GameEngine implements java.io.Serializable
      * @param GameDeck Absolute Path for Game Cards
      * @param SpaceDeck Absolute Path for Space Cards
      */
-    public GameEngine(long seed, String GameDeck, String SpaceDeck)
+    public GameEngine(long seed, String GameDeck, String SpaceDeck) throws GameException
     {
-        gameDeck = new GameDeck(GameDeck);
+        try
+        {
+            gameDeck = new GameDeck(GameDeck);
+        }catch(Exception e)
+        {
+            throw new GameException("File not found!", new FileNotFoundException());
+        }
         gameDiscard = new GameDeck();
-        spaceDeck = new SpaceDeck(SpaceDeck);
+        try
+        {
+            spaceDeck = new SpaceDeck(SpaceDeck);
+        }catch(Exception e)
+        {
+            throw new GameException("File not found!", new FileNotFoundException());
+        }
         spaceDiscard = new SpaceDeck();
         activePlayers = new ArrayList<Astronaut>();
         corpses = new ArrayList<Astronaut>();
@@ -55,8 +67,14 @@ public class GameEngine implements java.io.Serializable
      * @param player Name of player
      * @return Returns the number of active players
      */
-    public int addPlayer(String player)
+    public int addPlayer(String player) throws IllegalStateException
     {
+        if(hasStarted == true)
+        throw new IllegalStateException("Not possible!",null);
+        else if(activePlayers.size()==5)
+        {
+            throw new IllegalStateException("Not possible!",null);
+        }
         GameEngine p = new GameEngine();
         Astronaut ob = new Astronaut(player,p);
         activePlayers.add(ob);
@@ -169,8 +187,9 @@ public class GameEngine implements java.io.Serializable
     /** Public Method to load the game
      * @param path String path to get the file to load
      * @return Returns the saved game instance
+     * @throws GameException
      */
-    public static GameEngine loadState(String path)
+    public static GameEngine loadState(String path) throws GameException
     {
         try
         {
@@ -182,11 +201,8 @@ public class GameEngine implements java.io.Serializable
             return LoadedGame;
         }catch (Exception e) 
         {
-          System.out.println("An error occurred.");
-          e.printStackTrace();  
+          throw new GameException("Not found", new FileNotFoundException()); 
         }
-
-        return null;
     }
     /** Public Method to merge two decks
      * @param deck1 Deck 1
@@ -268,8 +284,8 @@ public class GameEngine implements java.io.Serializable
      * @param dbl Double oxygen cylinders
      * @return Returns a list of oxygen cards (Single-valued)
      */
-    public Oxygen[] splitOxygen(Oxygen dbl)
-    {
+    public Oxygen[] splitOxygen(Oxygen dbl) throws IllegalStateException
+    {       
         Oxygen o[] = new Oxygen[2];
         if(getGameDeck().size()==0)
         {
@@ -317,6 +333,10 @@ public class GameEngine implements java.io.Serializable
                 o[1] = getGameDiscard().drawOxygen(1);
             }
         }
+        else
+        {
+            throw new IllegalStateException("Could not be done",null);
+        }
         return o;
     }
     /** Public method to start the game
@@ -324,6 +344,18 @@ public class GameEngine implements java.io.Serializable
      */
     public void startGame()
     {
+        if(hasStarted==true)
+        {
+            throw new IllegalStateException("Nope",null);
+        }
+        if(getFullPlayerCount()==6)
+        {
+            throw new IllegalStateException("Nope",null);
+        }
+        if(getFullPlayerCount()==1)
+        {
+            throw new IllegalStateException("Nope",null);
+        }
         for(int i = 0; i<activePlayers.size(); i++)
         {
             Astronaut a = ((List<Astronaut>)activePlayers).get(i);
@@ -352,8 +384,24 @@ public class GameEngine implements java.io.Serializable
     /** Public Method to start turn of current player
      * No param
      */
-    public void startTurn()
+    public void startTurn() throws IllegalStateException
     {
+        if(hasStarted==false)
+        {
+            throw new IllegalStateException("Nope",null);
+        }
+        if(corpses.size()==getAllPlayers().size())
+        {
+            throw new IllegalStateException("Nope",null);
+        }
+        if(currentPlayer!=null)
+        {
+            throw new IllegalStateException("Nope",null);
+        }
+        if(getWinner()!=null)
+        {
+            throw new IllegalStateException("Nope",null);
+        }
         currentPlayer = ((List<Astronaut>)activePlayers).get(0);
         System.out.println(currentPlayer.toString()+":");
         //System.out.println(((List<Astronaut>) activePlayers).get(3));
@@ -364,8 +412,14 @@ public class GameEngine implements java.io.Serializable
      * @param traveller Specified player to be moved
      * @return Returns the card in his track 1 unit away
      */
-    public Card travel(Astronaut traveller)
+    public Card travel(Astronaut traveller) throws IllegalStateException
     {
+        int a = traveller.hasCard("Oxygen(1)");
+        int b = traveller.hasCard("Oxygen(2)");
+        if(a<2 && b==0)
+        {
+            throw new IllegalStateException("NOT allowed", null);
+        }
         Card p = null;
         if(traveller.hasCard("Oxygen(2)")!=0)
         {

@@ -211,7 +211,7 @@ public class Astronaut implements Serializable
     public Collection <Card> getTrack(){return track;}
     /** Public method to get a specific card
      * @param card Card to be taken
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException Invalid card parameter
      */
     public void hack(Card card) throws IllegalArgumentException
     {
@@ -254,7 +254,7 @@ public class Astronaut implements Serializable
     /** Public method to get a target card by name
      * @param card Name of Card to be obtained
      * @return Returns the required card
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException Invalid card parameter
      */
     public Card hack(String card)throws IllegalArgumentException
     {
@@ -365,7 +365,7 @@ public class Astronaut implements Serializable
     }
     /** Public method for LaserBlast
      * @return Card from target's track
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException Invalid move
      */
     public Card laserBlast() throws IllegalArgumentException
     {

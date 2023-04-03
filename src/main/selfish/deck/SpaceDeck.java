@@ -1,5 +1,9 @@
 package selfish.deck;
 import java.util.*;
+
+import selfish.GameException;
+
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 /**
  * This is SpaceDeck class
@@ -58,10 +62,16 @@ public class SpaceDeck extends Deck implements Serializable
     /**Public Constructor
      * @param path File path for Space Cards
      */
-    public SpaceDeck(String path)
+    public SpaceDeck(String path) throws GameException
     {
         super();
-        List <Card> c = loadCards(path);
-        super.add(c);
+        try
+        {
+            List <Card> c = loadCards(path);
+            super.add(c);
+        }catch(Exception e)
+        {
+            throw new GameException("File cannot be found", new FileNotFoundException());
+        }
     }
 }
