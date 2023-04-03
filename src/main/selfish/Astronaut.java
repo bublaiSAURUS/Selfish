@@ -212,8 +212,26 @@ public class Astronaut implements Serializable
     /** Public method to get specified card
      * @param card target card
      */
-    public void hack(Card card)
+    public void hack(Card card) throws IllegalArgumentException
     {
+        if(card == null)
+        {
+            throw new IllegalArgumentException("Null card not acceptable");
+        }
+        if(card instanceof Oxygen)
+        {
+            if(!(this.oxygens.contains(card)))
+            {
+                throw new IllegalArgumentException("Oxygen not found");
+            }            
+        }
+        else
+        {
+            if(!(this.actions.contains(card)))
+            {
+                throw new IllegalArgumentException("Card not found");
+            }
+        }
         int l = oxygens.size();
         if(actions.contains(card))
         {
