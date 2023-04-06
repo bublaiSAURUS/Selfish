@@ -34,16 +34,24 @@ public class GameEngine implements java.io.Serializable
         activePlayers = new ArrayList<Astronaut>();
         corpses = new ArrayList<Astronaut>();
     }
-    /**Public Constructor 
-     * @param seed Long value for Random Object seed
-     * @param GameDeck Absolute Path for Game Cards
-     * @param SpaceDeck Absolute Path for Space Cards
+    
+    /**p
+     * @param seed s
+     * @param GameDeck g
+     * @param SpaceDeck s
+     * @throws Exception e
      */
-    public GameEngine(long seed, String GameDeck, String SpaceDeck)
+    public GameEngine(long seed, String GameDeck, String SpaceDeck) throws Exception
     {
-        gameDeck = new GameDeck(GameDeck);
+        try{gameDeck = new GameDeck(GameDeck);}catch(Exception e)
+        {
+            throw new GameException("error", new FileNotFoundException());
+        }
         gameDiscard = new GameDeck();
-        spaceDeck = new SpaceDeck(SpaceDeck);
+        try{spaceDeck = new SpaceDeck(SpaceDeck);}catch(Exception e)
+        {
+            throw new GameException("error", new FileNotFoundException());
+        }
         spaceDiscard = new SpaceDeck();
         activePlayers = new ArrayList<Astronaut>();
         corpses = new ArrayList<Astronaut>();

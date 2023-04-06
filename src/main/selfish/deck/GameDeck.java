@@ -1,5 +1,9 @@
 package selfish.deck;
 import java.util.*;
+
+import selfish.GameException;
+
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 /**
  * This is GameDeck class
@@ -60,12 +64,14 @@ public class GameDeck extends Deck implements Serializable
      */
     public GameDeck()
     {}
-    /** Public constructor
-     * @param path Path of file with game cards
+    
+    /**p
+     * @param path p
+     * @throws Exception e
      */
-    public GameDeck(String path)
+    public GameDeck(String path) throws Exception
     {
-        super.add(loadCards(path));
+        try{super.add(loadCards(path));
         for(int i = 1; i <=10; i++)
         {
             super.add(new Oxygen(2));
@@ -73,6 +79,9 @@ public class GameDeck extends Deck implements Serializable
         for(int i = 1; i<=38 ; i++)
         {
             super.add(new Oxygen(1));
+        }}catch(Exception e)
+        {
+            throw new GameException("Error", new FileNotFoundException());
         }
     }
     /** Public

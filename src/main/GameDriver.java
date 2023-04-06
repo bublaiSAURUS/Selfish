@@ -30,7 +30,7 @@ public class GameDriver {
      * @throws IOException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException  {
-        File f1 = new File("C:/Users/sourabh roy/OneDrive/Desktop/COMP16412/comp16412-coursework-2__r67083sr/io/ActionCards.txt");
+        try{File f1 = new File("C:/Users/sourabh roy/OneDrive/Desktop/COMP16412/comp16412-coursework-2__r67083sr/io/ActionCards.txt");
         File f2 = new File("C:/Users/sourabh roy/OneDrive/Desktop/COMP16412/comp16412-coursework-2__r67083sr/io/SpaceCards.txt");
         GameEngine ob = new GameEngine(48,f1.getAbsolutePath(),f2.getAbsolutePath());
         Console con = System.console();
@@ -80,5 +80,5 @@ public class GameDriver {
         do{
             ob.startTurn();
         }while(ob.endTurn()!=0);
-    }   
+    }catch(Exception e){}   }
 }
