@@ -75,16 +75,17 @@ public class GameDeck extends Deck implements Serializable
             super.add(new Oxygen(1));
         }
     }
-    /** Public method to draw Oxygen cards
-     * @param value Value of Oxygen card to be drawn
-     * @return Returns the Oxygen Card drawn
+    /** Public
+     * @param value c
+     * @return d
+     * @throws IllegalStateException e
      */
-    public Oxygen drawOxygen(int value)
+    public Oxygen drawOxygen(int value) throws IllegalStateException
     {
         int l = size();
         Card c = null;
         List <Card> mana = new ArrayList<>();
-        do
+        try{do
         {
             c = draw();String n = c.toString();
             if(value==1 && n.equals("Oxygen(1)"))
@@ -107,7 +108,14 @@ public class GameDeck extends Deck implements Serializable
             }
             else
             mana.add(c);
-        }while(mana.size() != l);
+        }while(mana.size() != l);}catch(Exception e)
+        {
+            throw new IllegalStateException("Error");
+        }
+        if(c==null)
+        {
+            throw new IllegalStateException("Error");
+        }
         return (Oxygen)c; 
     }
     /** Public method to split Oxygen
@@ -116,9 +124,15 @@ public class GameDeck extends Deck implements Serializable
      */
     public Oxygen[] splitOxygen(Oxygen dbl)
     {
-        Oxygen o1 = drawOxygen(1);
+        Oxygen o[] = new Oxygen[2];
+        try{Oxygen o1 = drawOxygen(1);
         Oxygen o2 = drawOxygen(1);
-        Oxygen o[] = {o2, o1};
+        o[0] = o2;
+        o[1] = o1;
+        }catch(Exception e)
+        {
+            throw new IllegalStateException("Error");
+        }
         super.add(dbl);
         return o;
     }

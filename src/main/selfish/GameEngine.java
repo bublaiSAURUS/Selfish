@@ -264,14 +264,15 @@ public class GameEngine implements java.io.Serializable
           }
         
     }
-    /** Public method to split oxygen
-     * @param dbl Double oxygen cylinders
-     * @return Returns a list of oxygen cards (Single-valued)
+    /** p
+     * @param dbl d
+     * @return r
+     * @throws IllegalStateException i
      */
-    public Oxygen[] splitOxygen(Oxygen dbl)
+    public Oxygen[] splitOxygen(Oxygen dbl) throws IllegalStateException
     {
         Oxygen o[] = new Oxygen[2];
-        if(getGameDeck().size()==0)
+        try{if(getGameDeck().size()==0)
         {
             Oxygen hold[] = getGameDiscard().splitOxygen(dbl);
             o[0] = hold[0];
@@ -316,6 +317,9 @@ public class GameEngine implements java.io.Serializable
                 o[0] = hold[1];
                 o[1] = getGameDiscard().drawOxygen(1);
             }
+        }}catch(Exception e)
+        {
+            throw new IllegalStateException("Error");
         }
         return o;
     }

@@ -87,14 +87,21 @@ public abstract class Deck implements Serializable
         }
         return this.cards.size();
     }
-    /** Public method to draw a card
-     * @return Returns the card drawn
+
+    /**Public
+     * @return abc
+     * @throws IllegalStateException pqr
      */
-    public Card draw()
+    public Card draw() throws IllegalStateException
     {
         List <Card> copy = (List <Card>) cards;
         Card c = copy.get(cards.size()-1);
+        try{
         cards.remove(c);
+        }catch(Exception e)
+        {
+            throw new IllegalStateException("Empty Deck");
+        }
         return c;
     }
     /** Public method to remove the specified card
