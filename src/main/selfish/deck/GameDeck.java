@@ -91,6 +91,7 @@ public class GameDeck extends Deck implements Serializable
             {
                 if(mana.size()>0)
                 {
+                    Collections.reverse(mana);
                     super.add(mana);
                 }
                 break;
@@ -99,6 +100,7 @@ public class GameDeck extends Deck implements Serializable
             {
                 if(mana.size()>0)
                 {
+                    Collections.reverse(mana);
                     super.add(mana);
                 }
                 break;
