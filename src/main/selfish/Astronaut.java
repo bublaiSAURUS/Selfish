@@ -209,11 +209,20 @@ public class Astronaut implements Serializable
      * @return Returns a list of cards representing track
      */
     public Collection <Card> getTrack(){return track;}
-    /** Public method to get specified card
-     * @param card target card
+    /** p
+     * @param card c
+     * @throws IllegalArgumentException e
      */
-    public void hack(Card card)
+    public void hack(Card card) throws IllegalArgumentException
     {
+        if(card == null)
+        {
+            throw new IllegalArgumentException("Error");
+        }
+        if(this.hasCard(card.toString())==0)
+        {
+            throw new IllegalArgumentException("Error");
+        }
         int l = oxygens.size();
         if(actions.contains(card))
         {
@@ -232,12 +241,18 @@ public class Astronaut implements Serializable
             game.killPlayer(this);
         }
     }
-    /** Public method to get card of opponent
-     * @param card The card to be stolen
-     * @return the card itself
+
+    /**P
+     * @param card C
+     * @return r
+     * @throws IllegalArgumentException e
      */
-    public Card hack(String card)
+    public Card hack(String card) throws IllegalArgumentException
     {
+        if (card==null)
+        {
+            throw new IllegalArgumentException("Error");
+        }
         Card c = null; int l = oxygens.size();
         if(card.equals("Oxygen(1)") || card.equals("Oxygen(2)"))
         {
@@ -270,6 +285,10 @@ public class Astronaut implements Serializable
         if(isAlive()==false)
         {
             game.killPlayer(this);
+        }
+        if(c==null)
+        {
+            throw new IllegalArgumentException("Error");
         }
         return c;
     }
@@ -335,11 +354,17 @@ public class Astronaut implements Serializable
         return true;
         return false;
     }
-    /** Public method to implement Laser-Blast card
-     * @return Returns the card that was there previously
+
+    /** p 
+     * @return c
+     * @throws IllegalArgumentException e
      */
-    public Card laserBlast()
+    public Card laserBlast() throws IllegalArgumentException
     {
+        if(distanceFromShip()==6)
+        {
+            throw new IllegalArgumentException("Error");
+        }
         Card c = ((List<Card>) track).get(track.size()-1);
         track.remove(c);
         return c;
