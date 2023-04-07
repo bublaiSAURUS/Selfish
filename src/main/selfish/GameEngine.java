@@ -331,11 +331,16 @@ public class GameEngine implements java.io.Serializable
         }
         return o;
     }
-    /** Public method to start the game
-     * No param
+    
+    /**public
+     * Start Game
      */
     public void startGame()
     {
+        if(activePlayers.size()<2 || activePlayers.size()>5 || hasStarted)
+        {
+            throw new IllegalStateException();
+        }
         for(int i = 0; i<activePlayers.size(); i++)
         {
             Astronaut a = ((List<Astronaut>)activePlayers).get(i);
