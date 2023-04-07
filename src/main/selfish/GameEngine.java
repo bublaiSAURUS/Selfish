@@ -331,11 +331,10 @@ public class GameEngine implements java.io.Serializable
         }
         return o;
     }
-    
-    /**P
-     * @throws Exception e
+    /** Public method to start the game
+     * No param
      */
-    public void startGame() throws Exception
+    public void startGame()
     {
         for(int i = 0; i<activePlayers.size(); i++)
         {
@@ -362,16 +361,16 @@ public class GameEngine implements java.io.Serializable
         }
         hasStarted = true;
     }
-
-    /** P
-     * @throws Exception E
+    /** Public Method to start turn of current player
+     * No param
      */
-    public void startTurn() throws Exception
+    public void startTurn()
     {
         currentPlayer = ((List<Astronaut>)activePlayers).get(0);
         System.out.println(currentPlayer.toString()+":");
         //System.out.println(((List<Astronaut>) activePlayers).get(3));
-        activePlayers.remove(currentPlayer);        
+        activePlayers.remove(currentPlayer);
+        
     }
     /** Public Method to move player
      * @param traveller Specified player to be moved
