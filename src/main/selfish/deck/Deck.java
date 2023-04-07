@@ -21,9 +21,11 @@ public abstract class Deck implements Serializable
     {
         cards = new ArrayList <Card>();
     }
-    /** Protected Class to load cards
-     * @param path Path to file 
-     * @return Returns list of Cards
+    
+    /** p
+     * @param path p
+     * @return r
+     * @throws GameException e
      */
     protected static List <Card> loadCards(String path) throws GameException
     {

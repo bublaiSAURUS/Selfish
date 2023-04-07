@@ -331,11 +331,24 @@ public class GameEngine implements java.io.Serializable
         }
         return o;
     }
-    /** Public method to start the game
-     * No param
+    
+    /**P
+     * @throws Exception e
      */
-    public void startGame()
+    public void startGame() throws Exception
     {
+        if(activePlayers.size()==6)
+        {
+            throw new IllegalStateException();
+        }
+        if(activePlayers.size()==1)
+        {
+            throw new IllegalStateException();
+        }
+        if(hasStarted == true)
+        {
+            throw new IllegalStateException();
+        }
         for(int i = 0; i<activePlayers.size(); i++)
         {
             Astronaut a = ((List<Astronaut>)activePlayers).get(i);
@@ -361,11 +374,28 @@ public class GameEngine implements java.io.Serializable
         }
         hasStarted = true;
     }
-    /** Public Method to start turn of current player
-     * No param
+
+    /** P
+     * @throws Exception E
      */
-    public void startTurn()
+    public void startTurn() throws Exception
     {
+        if(corpses.size()==getFullPlayerCount())
+        {
+            throw new IllegalStateException();
+        }
+        if(getWinner()!=null)
+        {
+            throw new IllegalStateException();
+        }
+        if(getCurrentPlayer()!=null)
+        {
+            throw new IllegalStateException();
+        }
+        if(hasStarted==false)
+        {
+            throw new IllegalStateException();
+        }
         currentPlayer = ((List<Astronaut>)activePlayers).get(0);
         System.out.println(currentPlayer.toString()+":");
         //System.out.println(((List<Astronaut>) activePlayers).get(3));
