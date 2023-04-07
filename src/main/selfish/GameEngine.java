@@ -371,7 +371,7 @@ public class GameEngine implements java.io.Serializable
      */
     public void startTurn()
     {
-        if(getWinner()!=null || currentPlayer!=null || hasStarted || activePlayers.size()==0)
+        if(getWinner()!=null || currentPlayer!=null || hasStarted==false || activePlayers.size()==0)
         {
             throw new IllegalStateException();
         }
