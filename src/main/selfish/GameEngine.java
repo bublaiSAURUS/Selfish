@@ -371,6 +371,10 @@ public class GameEngine implements java.io.Serializable
      */
     public void startTurn()
     {
+        if(getWinner()!=null || currentPlayer!=null || hasStarted || activePlayers.size()==0)
+        {
+            throw new IllegalStateException();
+        }
         currentPlayer = ((List<Astronaut>)activePlayers).get(0);
         System.out.println(currentPlayer.toString()+":");
         //System.out.println(((List<Astronaut>) activePlayers).get(3));
