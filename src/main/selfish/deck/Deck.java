@@ -73,10 +73,10 @@ public abstract class Deck implements Serializable
         return p;
     }
 
-    /**int add.
-     * Add a list of cards
-     * @param cards list
-     * @return total number of cards in deck
+    /**oooooo oooooooo
+     * @ ppppppppp
+     * @param cards cccccc
+     * @return rrrrrr bbbbbb
      */
     protected int add(List <Card> cards)
     {
@@ -88,7 +88,7 @@ public abstract class Deck implements Serializable
     }
 
     /**int add.
-     * Add a single card in cards
+     * @ Add a single card in cards
      * @param card Card
      * @return total number of cards in Deck
      */
