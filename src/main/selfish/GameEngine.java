@@ -65,6 +65,10 @@ public class GameEngine implements java.io.Serializable
      */
     public int addPlayer(String player)
     {
+        if(hasStarted==true || activePlayers.size()==5)
+        {
+            throw new IllegalStateException();
+        }
         GameEngine p = new GameEngine();
         Astronaut ob = new Astronaut(player,p);
         activePlayers.add(ob);
