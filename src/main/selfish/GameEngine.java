@@ -388,7 +388,7 @@ public class GameEngine implements java.io.Serializable
     public Card travel(Astronaut traveller)
     {
         Card p = null;
-        if(traveller.hasCard("Oxygen(2)")!=0)
+        try{if(traveller.hasCard("Oxygen(2)")!=0)
         {
             Card c = traveller.hack("Oxygen(2)");
             gameDiscard.add(c);
@@ -418,6 +418,9 @@ public class GameEngine implements java.io.Serializable
             return p;
             else
             traveller.addToTrack(p);
+        }}catch(Exception e)
+        {
+            throw new IllegalStateException();
         }
         return p;
     }
