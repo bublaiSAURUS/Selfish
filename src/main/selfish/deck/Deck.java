@@ -72,9 +72,9 @@ public abstract class Deck implements Serializable
         }
         return p;
     }
-    /**protected method
-     * @param cards list of cards to be added
-     * @return size of cards
+    /** Protected method to add
+     * @param cards List of cards to be added
+     * @return Returns size of cards
      */
     protected int add(List <Card> cards)
     {
@@ -84,9 +84,9 @@ public abstract class Deck implements Serializable
         }
         return this.cards.size();
     }
-    /**public method
-     * @param card card to be added
-     * @return size of cards
+    /** Public method to add
+     * @param card Card to be added
+     * @return Returns size of cards
      */
     public int add(Card card)
     {
