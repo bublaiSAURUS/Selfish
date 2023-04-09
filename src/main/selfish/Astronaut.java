@@ -215,7 +215,7 @@ public class Astronaut implements Serializable
      */
     public void hack(Card card) throws IllegalArgumentException
     {
-        if(card == null || this.hasCard(card.toString())==0)
+        if(card == null || (card instanceof Oxygen && !(this.oxygens.contains(card))) || !(this.actions.contains(card)))
         {
             throw new IllegalArgumentException("Error");
         }
