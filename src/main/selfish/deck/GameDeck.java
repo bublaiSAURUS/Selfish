@@ -137,6 +137,10 @@ public class GameDeck extends Deck implements Serializable
      */
     public Oxygen[] splitOxygen(Oxygen dbl)
     {
+        if(dbl.getValue()==1)
+        {
+            throw new IllegalArgumentException();
+        }
         Oxygen o[] = new Oxygen[2];
         try{Oxygen o1 = drawOxygen(1);
         Oxygen o2 = drawOxygen(1);
