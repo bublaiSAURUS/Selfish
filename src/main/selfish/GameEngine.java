@@ -174,11 +174,12 @@ public class GameEngine implements java.io.Serializable
         corpses.add(corpse);
         activePlayers.remove(corpse);
     }
-    /** Public Method to load the game
-     * @param path String path to get the file to load
-     * @return Returns the saved game instance
+    /**Public
+     * @param path p
+     * @return r
+     * @throws Exception e
      */
-    public static GameEngine loadState(String path)
+    public static GameEngine loadState(String path)throws Exception
     {
         try
         {
@@ -190,11 +191,8 @@ public class GameEngine implements java.io.Serializable
             return LoadedGame;
         }catch (Exception e) 
         {
-          System.out.println("An error occurred.");
-          e.printStackTrace();  
+          throw new GameException("Error", new FileNotFoundException());  
         }
-
-        return null;
     }
     /** Public Method to merge two decks
      * @param deck1 Deck 1
