@@ -215,11 +215,7 @@ public class Astronaut implements Serializable
      */
     public void hack(Card card) throws IllegalArgumentException
     {
-        if(card == null)
-        {
-            throw new IllegalArgumentException("Error");
-        }
-        if(this.hasCard(card.toString())==0)
+        if(card == null || this.hasCard(card.toString())==0)
         {
             throw new IllegalArgumentException("Error");
         }
@@ -249,7 +245,7 @@ public class Astronaut implements Serializable
      */
     public Card hack(String card) throws IllegalArgumentException
     {
-        if (card==null)
+        if (card==null || this.hasCard(card)==0)
         {
             throw new IllegalArgumentException("Error");
         }
@@ -285,10 +281,6 @@ public class Astronaut implements Serializable
         if(isAlive()==false)
         {
             game.killPlayer(this);
-        }
-        if(c==null)
-        {
-            throw new IllegalArgumentException("Error");
         }
         return c;
     }
