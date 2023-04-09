@@ -96,9 +96,10 @@ public class GameDeck extends Deck implements Serializable
         List <Card> mana = new ArrayList<>();
         try{do
         {
-            c = draw();String n = c.toString();
+           Card p = draw();String n = p.toString();
             if(value==1 && n.equals("Oxygen(1)"))
             {
+                c = p;
                 if(mana.size()>0)
                 {
                     Collections.reverse(mana);
@@ -108,6 +109,7 @@ public class GameDeck extends Deck implements Serializable
             }
             else if(value==2 && n.equals("Oxygen(2)"))
             {
+                c = p;
                 if(mana.size()>0)
                 {
                     Collections.reverse(mana);
@@ -116,13 +118,15 @@ public class GameDeck extends Deck implements Serializable
                 break;
             }
             else
-            mana.add(c);
+            mana.add(p);
         }while(mana.size() != l);}catch(Exception e)
         {
             throw new IllegalStateException("Error");
         }
         if(c==null)
         {
+            Collections.reverse(mana);
+            super.add(mana);
             throw new IllegalStateException("Error");
         }
         return (Oxygen)c; 
