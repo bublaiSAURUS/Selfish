@@ -76,7 +76,7 @@ public abstract class Deck implements Serializable
      * @param cards List of cards to be added
      * @return Returns size of cards
      */
-    protected int add(List <Card> cards)
+    protected int add(List<Card> cards)
     {
         for(Card c: cards)
         {
